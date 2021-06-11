@@ -1,33 +1,18 @@
 <template>
-  <div>{{ }}</div>
+	<div>这是login</div>
 </template>
 
 <script>
 import { ref, watch, reactive, watchEffect } from 'vue'
 
 export default {
-  props: {
-    details: {
-      type: Array,
-      default: () => []
-    }
-  },
-  setup(props) {
-    const obj = reactive({ a: 1, b: 2 })
-
-    watchEffect(() => {
-      console.log(obj)
-    }
-    )
-
-    setInterval(() => {
-      obj.a++
-    }, 1000)
-
-    // 暴露给 template
-    return {}
-  }
+	name: 'Login',
+	setup(props) {
+		return {}
+	}
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

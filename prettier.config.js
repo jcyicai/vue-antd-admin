@@ -9,7 +9,7 @@ module.exports = {
 	jsxSingleQuote: false,
 	arrowParens: 'always', // 箭头函数参数括号，默认avoid 可选 avoid| always,avoid 能省略括号的时候就省略 例如x => x，always 总是有括号
 	endOfLine: 'lf',
-	vueIndentScriptAndStyle: true, // vue文件脚本和样式标签缩进
+	vueIndentScriptAndStyle: false, // vue文件脚本和样式标签缩进
 	quoteProps: 'as-needed',
 	bracketSpacing: true, // 在对象文字中的括号之间打印空格
 	htmlWhitespaceSensitivity: 'strict',

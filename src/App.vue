@@ -1,18 +1,14 @@
 <template>
-  <div id="app">
-    <rouer-view />
-  </div>
+	<div id="counter">
+		<router-view />
+	</div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  setup(props) {
-    
-  }
-}
+	export default {
+		name: 'App',
+		setup(props) {}
+	}
 </script>
 
-<style>
-
-</style>
+<style></style>

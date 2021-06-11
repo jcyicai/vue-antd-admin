@@ -3,23 +3,20 @@ import vue from '@vitejs/plugin-vue'
 import html from 'vite-plugin-html'
 
 import fs from 'fs'
-import path from 'path'
+import { resolve } from 'path'
 import dotenv from 'dotenv'
 
-const envFiles = [
-  `.env`,
-  `.env.${process.env.NODE_ENV}`
-]
+const envFiles = [`.env`, `.env.${process.env.NODE_ENV}`]
 
 for (const file of envFiles) {
-  const envConfig = dotenv.parse(fs.readFileSync(file))
-  for (const key in envConfig) {
-    process.env[key] = envConfig[key]
-  }
+	const envConfig = dotenv.parse(fs.readFileSync(file))
+	for (const key in envConfig) {
+		process.env[key] = envConfig[key]
+	}
 }
 
-function resolve(dir) {
-  return path.join(__dirname, dir)
+function pathResolve(dir) {
+	return resolve(process.cwd(), '.', dir)
 }
 
 export default ({ command, mode }) => {
@@ -27,9 +24,12 @@ export default ({ command, mode }) => {
 	return {
 		base: process.env.VITE_APP_PUBLIC_PATH,
 		resolve: {
-			alias: {
-        '/@/': resolve('./src')
-      }
+			alias: [
+				{
+					find: /\/@\//,
+					replacement: pathResolve('src') + '/'
+				}
+			]
 		},
 		server: {
 			host: '127.0.0.1',

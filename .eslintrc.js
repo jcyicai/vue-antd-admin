@@ -1,48 +1,21 @@
 module.exports = {
-  root: true,
-  parserOptions: {
-    parser: "babel-eslint",
-    sourceType: "module",
-  },
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-  },
-  extends: [
-    "plugin:vue/vue3-recommended",
-    "prettier",
-    "plugin:prettier/recommended",
-  ],
+	root: true,
+	env: {
+		node: true,
+		es6: true
+	},
+	extends: ['plugin:vue/vue3-recommended', 'prettier', 'plugin:prettier/recommended'],
 
-  // add your custom rules here
-  //it is base on https://github.com/vuejs/eslint-config-vue
-  rules: {
-    "prettier/prettier": "error",
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/multiline-html-element-content-newline": "off",
-    "no-console": "off", // 禁用 console
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    
-    'vue/attributes-order': 'off',
-    'vue/one-component-per-file': 'off',
-    'vue/html-closing-bracket-newline': 'off',
-    'vue/max-attributes-per-line': 'off',
-    'vue/attribute-hyphenation': 'off',
-    'vue/require-default-prop': 'off',
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'always',
-          normal: 'never',
-          component: 'always',
-        },
-        svg: 'always',
-        math: 'always',
-      },
-    ],
-    /*
+	// add your custom rules here
+	//it is base on https://github.com/vuejs/eslint-config-vue
+	rules: {
+		'prettier/prettier': 'error',
+		'prettier/prettier': 0
+		/* 'vue/singleline-html-element-content-newline': 'off',
+		'vue/multiline-html-element-content-newline': 'off',
+		'no-console': 'off', // 禁用 console
+		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off' */
+		/*
     "vue/max-attributes-per-line": [2, {
       "singleline": 10,
       "multiline": {
@@ -224,5 +197,5 @@ module.exports = {
     }],
     'array-bracket-spacing': [2, 'never'] // 强制数组方括号中使用一致的空格
     */
-  },
-};
+	}
+}
