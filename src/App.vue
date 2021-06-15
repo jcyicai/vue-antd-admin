@@ -1,14 +1,12 @@
 <template>
-	<div id="counter">
-		<router-view />
-	</div>
+	<router-view />
 </template>
 
 <script>
-	export default {
-		name: 'App',
-		setup(props) {}
-	}
+export default {
+	name: 'App',
+	setup(props) {}
+}
 </script>
 
 <style></style>

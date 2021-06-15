@@ -10,7 +10,8 @@ module.exports = {
 	//it is base on https://github.com/vuejs/eslint-config-vue
 	rules: {
 		'prettier/prettier': 'error',
-		'prettier/prettier': 0
+		'prettier/prettier': 0,
+    "vue/comment-directive": 'off'
 		/* 'vue/singleline-html-element-content-newline': 'off',
 		'vue/multiline-html-element-content-newline': 'off',
 		'no-console': 'off', // 禁用 console

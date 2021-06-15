@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import 'normalize.css/normalize.css'
 import ElementPlus from 'element-plus'
-import 'element-plus/lib/theme-chalk/index.css'
+//import 'element-plus/lib/theme-chalk/index.css'
+import '/@/styles/element-variables.scss'
+import '/@/styles/index.scss'
 
 import App from './App.vue'
 import router from '/@/router'
