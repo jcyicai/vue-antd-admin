@@ -1,16 +1,22 @@
 <template>
 	<div class="jc-login">
 		<div class="container">
-			<el-row class="main" type="flex">
-				<el-col :span="12" class="flex-item login-info">
+			<div class="wrapper">
+				<div class="login-logo enter-x-l">
+					<p>
+						<img alt="JC Admin" src="../../assets/images/logo-jc.png" />
+						<span>JC Admin</span>
+					</p>
+				</div>
+				<div class="flex-item login-info">
 					<div class="info-box">
 						<img class="enter-x-r" alt="JC Admin" src="../../assets/svg/login-box-bg.svg" />
 						<h1 class="enter-x-r">JC Admin后台管理系统</h1>
 						<p class="enter-x-r"><span>欢迎使用</span></p>
 					</div>
-				</el-col>
-				<el-col :span="12" class="flex-item login-form">
-					<div class="form-box">
+				</div>
+				<div class="flex-item login-form">
+					<div class="form-box enter-x-l">
 						<h1 class="login-title enter-x-l">登录</h1>
 						<el-form ref="loginForm" :model="formData" :rules="loginRules">
 							<el-form-item prop="userName" class="enter-x-l">
@@ -40,8 +46,8 @@
 							</el-form-item>
 						</el-form>
 					</div>
-				</el-col>
-			</el-row>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -93,7 +99,7 @@ export default {
 			loginForm.value.validate((valid) => {
 				if (valid) {
 					alert('登录成功')
-					loading.value = false
+					//loading.value = false
 				} else {
 					console.log('登录失败')
 					loading.value = false
@@ -116,6 +122,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$bg-dark: #293146;
+
 .jc-login {
 	overflow: hidden;
 	height: 100%;
@@ -136,23 +144,41 @@ export default {
 	}
 	.container {
 		margin: 0 auto;
-		padding: 48px;
 		height: 100%;
-		.main {
+		box-sizing: border-box;
+		.wrapper {
+			display: flex;
 			height: 100%;
+			.login-logo {
+				position: absolute;
+				top: 8px;
+				display: none;
+				p {
+					color: #fff;
+					img {
+						width: 30px;
+						vertical-align: -7px;
+					}
+					span {
+						font-weight: bold;
+						font-size: 16px;
+						display: inline-block;
+						padding-left: 5px;
+					}
+				}
+			}
 			.flex-item {
-				height: 100%;
+				width: 50%;
 			}
 			.login-info {
-				padding: 30px 20px 0 150px;
 				position: relative;
 				.info-box {
 					position: absolute;
 					top: 50%;
-					margin-top: -190px;
 					color: #fff;
+					margin-top: -159px;
 					img {
-						width: 50%;
+						width: 45%;
 						vertical-align: middle;
 					}
 					h1 {
@@ -166,7 +192,7 @@ export default {
 				.form-box {
 					position: absolute;
 					top: 50%;
-					margin-top: -200px;
+					margin-top: -168px;
 					padding-left: 90px;
 					width: 400px;
 					.login-title {
@@ -184,7 +210,60 @@ export default {
 	}
 }
 
-@for $i from 1 through 4 {
+@media screen and (max-width: 1199px) {
+	.jc-login {
+		background-color: $bg-dark;
+		&::before {
+			background: none;
+		}
+		.container {
+			.wrapper {
+				display: block;
+				.login-logo {
+					display: block;
+				}
+				.login-info {
+					display: none;
+				}
+				.login-form {
+					position: static;
+					.form-box {
+						left: 50%;
+						margin-left: -200px;
+						padding-left: 0;
+						background: #fff;
+						padding: 40px 30px;
+						border-radius: 6px;
+						width: 350px;
+						.login-title {
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.container {
+		max-width: 1200px;
+	}
+}
+
+@media screen and (min-width: 1500px) {
+	.container {
+		max-width: 1500px;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.container {
+		max-width: 1600px;
+	}
+}
+
+@for $i from 1 through 5 {
 	.enter-x-l:nth-child(#{$i}) {
 		opacity: 0;
 		z-index: $i;
