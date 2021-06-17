@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ant-design-vue": "^2.2.0-beta.3",
     "axios": "^0.21.1",
-    "element-plus": "^1.0.2-beta.46",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "vue": "^3.1.1",
@@ -31,6 +31,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.11.0",
     "husky": "^6.0.0",
+    "less": "^4.1.1",
     "postcss": "^8.3.1",
     "prettier": "^2.3.1",
     "sass": "^1.34.1",

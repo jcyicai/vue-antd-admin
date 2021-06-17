@@ -18,33 +18,28 @@
 				<div class="flex-item login-form">
 					<div class="form-box enter-x-l">
 						<h1 class="login-title enter-x-l">登录</h1>
-						<el-form ref="loginForm" :model="formData" :rules="loginRules">
-							<el-form-item prop="userName" class="enter-x-l">
-								<el-input v-model="formData.userName" placeholder="用户名"></el-input>
-							</el-form-item>
-							<el-form-item prop="password" class="enter-x-l">
-								<el-input v-model="formData.password" :type="passwordType" placeholder="密码">
-									<template #suffix>
-										<i
-											class="el-input__icon el-icon-view icon-show-pwd"
-											@click="handleShowPassword"
-										></i>
-									</template>
-								</el-input>
-							</el-form-item>
-							<el-form-item class="enter-x-l">
-								<el-checkbox v-model="formData.isChecked">记住我</el-checkbox>
-							</el-form-item>
-							<el-form-item class="enter-x-l">
-								<el-button
+						<a-form ref="loginForm" :model="formData" :rules="rules">
+							<a-form-item name="userName" class="enter-x-l">
+								<a-input size="large" v-model:value="formData.userName" placeholder="用户名"></a-input>
+							</a-form-item>
+							<a-form-item name="password" class="enter-x-l">
+								<a-input-password size="large" v-model:value="formData.password" placeholder="密码">
+								</a-input-password>
+							</a-form-item>
+							<a-form-item class="enter-x-l" name="isCheckd">
+								<a-checkbox v-model:checked="formData.isChecked">记住我</a-checkbox>
+							</a-form-item>
+							<a-form-item class="enter-x-l">
+								<a-button
+									size="large"
 									:loading="loading"
 									class="btn-login"
 									type="primary"
 									@click="handleRegister"
-									>登录</el-button
+									>登录</a-button
 								>
-							</el-form-item>
-						</el-form>
+							</a-form-item>
+						</a-form>
 					</div>
 				</div>
 			</div>
@@ -53,11 +48,13 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { defineComponent, ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
-export default {
+export default defineComponent({
 	name: 'Login',
 	setup(props) {
+		const router = useRouter()
 		const loginForm = ref()
 		const formData = reactive({
 			userName: '',
@@ -65,64 +62,56 @@ export default {
 			isChecked: false
 		})
 		const loading = ref(false)
-		const passwordType = ref('password')
 
-		const validateUsername = (rule, value, callback) => {
+		/* let validateUsername = async (rule, value) => {
+			debugger
 			if (!value) {
-				callback(new Error('请输入用户名'))
+				return Promise.reject('请输入用户名')
 			} else {
-				callback()
+				return Promise.resolve()
 			}
 		}
 
-		const validatePassword = (rule, value, callback) => {
+		let validatePassword = async (rule, value) => {
 			if (value.length < 6) {
-				callback(new Error('密码不能小于6位'))
+				return Promise.reject('密码不能小于6位')
 			} else {
-				callback()
+				return Promise.resolve()
 			}
-		}
+		} */
 
-		const loginRules = reactive({
-			userName: [{ required: true, trigger: 'blur', validator: validateUsername }],
-			password: [{ required: true, trigger: 'blur', validator: validatePassword }]
-		})
-
-		//显示密码
-		function handleShowPassword() {
-			passwordType.value = passwordType.value === 'password' ? '' : 'password'
+		const rules = {
+			userName: [{ required: true, trigger: 'blur', message: '请输入用户名' }],
+			password: [{ min: 6, required: true, trigger: 'blur', message: '密码不能小于6位' }]
 		}
 
 		//提交登录信息
-		function handleRegister() {
+		const handleRegister = () => {
 			loading.value = true
-			loginForm.value.validate((valid) => {
-				if (valid) {
+			loginForm.value.validate()
+				.then(() => {
 					alert('登录成功')
-					//loading.value = false
-				} else {
-					console.log('登录失败')
 					loading.value = false
-					return false
-				}
-			})
+					router.push({ path: '/' })
+				})
+				.catch((error) => {
+					loading.value = false
+				})
 		}
 
 		return {
 			loginForm,
-			passwordType,
 			loading,
 			formData,
-			loginRules,
-			handleRegister,
-			handleShowPassword
+			rules,
+			handleRegister
 		}
 	}
-}
+})
 </script>
 
-<style lang="scss" scoped>
-$bg-dark: #293146;
+<style lang="less" scoped>
+@bg-dark: #293146;
 
 .jc-login {
 	overflow: hidden;
@@ -184,6 +173,7 @@ $bg-dark: #293146;
 					h1 {
 						margin: 56px 0 20px 0;
 						font-weight: normal;
+						color: #fff;
 					}
 				}
 			}
@@ -193,16 +183,13 @@ $bg-dark: #293146;
 					position: absolute;
 					top: 50%;
 					margin-top: -168px;
-					padding-left: 90px;
+					margin-left: 90px;
 					width: 400px;
 					.login-title {
 						margin-bottom: 20px;
 					}
 					.btn-login {
 						width: 100%;
-					}
-					.icon-show-pwd {
-						cursor: pointer;
 					}
 				}
 			}
@@ -212,7 +199,7 @@ $bg-dark: #293146;
 
 @media screen and (max-width: 1199px) {
 	.jc-login {
-		background-color: $bg-dark;
+		background-color: @bg-dark;
 		&::before {
 			background: none;
 		}
@@ -234,7 +221,6 @@ $bg-dark: #293146;
 						background: #fff;
 						padding: 40px 30px;
 						border-radius: 6px;
-						width: 350px;
 						.login-title {
 							text-align: center;
 						}
@@ -263,25 +249,30 @@ $bg-dark: #293146;
 	}
 }
 
-@for $i from 1 through 5 {
-	.enter-x-l:nth-child(#{$i}) {
+.loop1(@n, @i: 1) when (@i =< @n ) {
+	.enter-x-l:nth-child(@{i}) {
 		opacity: 0;
-		z-index: $i;
+		z-index: @i;
 		animation: enter-x-l-animation 0.4s ease-in-out 0.3s;
 		animation-fill-mode: forwards;
-		animation-delay: $i * 0.1s;
+		animation-delay: @i * 0.1s;
 	}
+	.loop1(@n, (@i + 1));
 }
 
-@for $i from 1 through 3 {
-	.enter-x-r:nth-child(#{$i}) {
+.loop2(@n, @i: 1) when (@i =< @n ) {
+	.enter-x-r:nth-child(@{i}) {
 		opacity: 0;
-		z-index: $i;
+		z-index: @i;
 		animation: enter-x-r-animation 0.4s ease-in-out 0.3s;
 		animation-fill-mode: forwards;
-		animation-delay: $i * 0.1s;
+		animation-delay: @i * 0.1s;
 	}
+	.loop2(@n, (@i + 1));
 }
+
+.loop1(5);
+.loop2(3);
 
 @keyframes enter-x-r-animation {
 	from {

@@ -64,6 +64,13 @@ export default ({ command, mode }) => {
 					}
 				}
 			})
-		]
+		],
+		css: {
+			preprocessorOptions: {
+				less: {
+					javascriptEnabled: true
+				}
+			}
+		}
 	}
 }
