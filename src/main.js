@@ -1,20 +1,20 @@
 import { createApp } from 'vue'
 import 'normalize.css/normalize.css'
-import Antd from 'ant-design-vue';
-//import ElementPlus from 'element-plus'
-//import 'element-plus/lib/theme-chalk/index.css'
-//import '/@/styles/element-variables.scss'
-//import 'ant-design-vue/dist/antd.css'
-import '/@/styles/antd.less'
-import '/@/styles/index.less'
+import Antd from 'ant-design-vue'
+import '@/styles/antd.less'
+import '@/styles/index.less'
 
 import App from './App.vue'
-import router from '/@/router'
+import router from './router'
+import store from './store'
+
+import './permission'
 
 const app = createApp(App)
-app.config.productionTip = false;
+app.config.productionTip = false
 
 app.use(Antd)
 app.use(router)
+app.use(store)
 
 app.mount('#app')

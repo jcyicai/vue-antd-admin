@@ -1,6 +1,6 @@
 <template>
 	<div class="layout-container">
-        <sidebar></sidebar>
+        <sidebar/>
     </div>
 </template>
 

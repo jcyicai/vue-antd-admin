@@ -11,7 +11,20 @@ module.exports = {
 	rules: {
 		'prettier/prettier': 'error',
 		'prettier/prettier': 0,
-    "vue/comment-directive": 'off'
+    "vue/comment-directive": 'off',
+    'vue/attributes-order': 'off',
+    'vue/one-component-per-file': 'off',
+    'vue/html-closing-bracket-newline': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/multiline-html-element-content-newline': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/attribute-hyphenation': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/no-unused-components': 'off',
+    'vue/html-self-closing': 'off',
+    'no-unused-vars': 'off',
+    'vue/custom-event-name-casing': 'off',
+    'no-use-before-define': 'off',
 		/* 'vue/singleline-html-element-content-newline': 'off',
 		'vue/multiline-html-element-content-newline': 'off',
 		'no-console': 'off', // 禁用 console

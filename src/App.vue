@@ -9,4 +9,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="less" scoped>
+#nprogress .bar {
+	background: #0c63bd !important;
+}
+</style>

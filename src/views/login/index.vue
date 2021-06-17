@@ -20,11 +20,14 @@
 						<h1 class="login-title enter-x-l">登录</h1>
 						<a-form ref="loginForm" :model="formData" :rules="rules">
 							<a-form-item name="userName" class="enter-x-l">
-								<a-input size="large" v-model:value="formData.userName" placeholder="用户名"></a-input>
+								<a-input v-model:value="formData.userName" size="large" placeholder="用户名" />
 							</a-form-item>
 							<a-form-item name="password" class="enter-x-l">
-								<a-input-password size="large" v-model:value="formData.password" placeholder="密码">
-								</a-input-password>
+								<a-input-password
+									v-model:value="formData.password"
+									size="large"
+									placeholder="密码"
+								/>
 							</a-form-item>
 							<a-form-item class="enter-x-l" name="isCheckd">
 								<a-checkbox v-model:checked="formData.isChecked">记住我</a-checkbox>
@@ -88,7 +91,8 @@ export default defineComponent({
 		//提交登录信息
 		const handleRegister = () => {
 			loading.value = true
-			loginForm.value.validate()
+			loginForm.value
+				.validate()
 				.then(() => {
 					alert('登录成功')
 					loading.value = false
@@ -125,7 +129,7 @@ export default defineComponent({
 		width: 100%;
 		height: 100%;
 		margin-left: -48%;
-		background-image: url('/@/assets/svg/login-bg.svg');
+		background-image: url('@/assets/svg/login-bg.svg');
 		background-position: 100%;
 		background-repeat: no-repeat;
 		background-size: auto 100%;

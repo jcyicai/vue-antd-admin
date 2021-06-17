@@ -24,12 +24,15 @@ export default ({ command, mode }) => {
 	return {
 		base: process.env.VITE_APP_PUBLIC_PATH,
 		resolve: {
-			alias: [
+			/* alias: [
 				{
 					find: /\/@\//,
 					replacement: pathResolve('src') + '/'
 				}
-			]
+			] */
+			alias: {
+				'@': resolve(__dirname, 'src')
+			}
 		},
 		server: {
 			host: '127.0.0.1',

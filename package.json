@@ -1,5 +1,5 @@
 {
-  "name": "JC-Admin",
+  "name": "jc-admin",
   "version": "1.0.0",
   "author": {
     "name": "Jason Chen"
@@ -12,12 +12,15 @@
   "dependencies": {
     "ant-design-vue": "^2.2.0-beta.3",
     "axios": "^0.21.1",
+    "js-cookie": "^2.2.1",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "vue": "^3.1.1",
-    "vue-router": "^4.0.8"
+    "vue-router": "^4.0.8",
+    "vuex": "^4.0.1"
   },
   "devDependencies": {
+    "@types/node": "^15.12.2",
     "@vitejs/plugin-legacy": "^1.4.1",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vitejs/plugin-vue-jsx": "^1.1.5",
