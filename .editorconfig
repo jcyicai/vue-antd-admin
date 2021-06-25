@@ -1,0 +1,21 @@
+# http://editorconfig.org
+root = true
+
+# 说明
+## 设置文件编码为 UTF-8；
+## 用两个空格代替制表符；
+## 在保存时删除尾部的空白字符；
+## 在文件结尾添加一个空白行；
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
