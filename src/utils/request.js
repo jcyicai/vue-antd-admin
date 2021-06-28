@@ -57,7 +57,6 @@ service.interceptors.response.use(
 		}
 	},
 	(error) => {
-		debugger
 		message.error(res.message || 'Error', 5000)
 		return Promise.reject(error)
 	}

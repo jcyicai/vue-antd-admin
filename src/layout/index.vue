@@ -1,7 +1,7 @@
 <template>
 	<div class="layout-container">
-        <sidebar/>
-    </div>
+		<!-- <sidebar /> -->
+	</div>
 </template>
 
 <script>
@@ -20,7 +20,7 @@ export default {
 
 <style lang="less" scoped>
 .layout-container {
-    height: 100%;
-    overflow: hidden;
+	height: 100%;
+	overflow: hidden;
 }
 </style>

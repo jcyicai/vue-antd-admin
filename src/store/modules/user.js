@@ -71,6 +71,7 @@ const actions = {
 					resolve(data)
 				})
 				.catch((error) => {
+					debugger
 					reject(error)
 				})
 		})

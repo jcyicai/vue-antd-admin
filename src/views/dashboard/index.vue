@@ -3,16 +3,12 @@
 </template>
 
 <script>
-	export default {
-		name: '',
-		components: {},
-		data() {
-			return {}
-		},
-		created() {},
-		mounted() {},
-		methods: {}
+export default {
+	name: 'Dashboard',
+	setup() {
+		return {}
 	}
+}
 </script>
 
 <style lang="scss" scoped></style>

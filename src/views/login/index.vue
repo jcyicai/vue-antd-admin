@@ -49,17 +49,17 @@
 		</div>
 	</div>
 </template>
-
 <script>
-import { defineComponent, ref, reactive, toRaw, watch } from 'vue'
+import { ref, reactive, toRaw, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
-export default defineComponent({
+export default {
 	name: 'Login',
 	setup(props) {
 		const store = useStore()
 		const router = useRouter()
+		const route = useRoute()
 		const loginForm = ref()
 		const formData = reactive({
 			username: '',
@@ -102,15 +102,15 @@ export default defineComponent({
 		}
 
 		watch(
-			() => useRoute.path,
-			(route) => {
-				debugger
-				const query = route.query
+			() => route,
+			(curRoute) => {
+				const query = curRoute.query
 				if (query) {
 					redirect.value = query.redirect
 					otherQuery.value = getOtherQuery(query)
 				}
-			}
+			},
+			{ immediate: true }
 		)
 
 		//提交登录信息
@@ -119,12 +119,10 @@ export default defineComponent({
 			loginForm.value
 				.validate()
 				.then(() => {
-					debugger
 					store
 						.dispatch('user/login', toRaw(formData))
 						.then(() => {
-							debugger
-							router.push({ path: redirect.value || '/', query: this.otherQuery })
+							router.push({ path: redirect.value || '/' })
 							loading.value = false
 						})
 						.catch(() => {
@@ -144,7 +142,7 @@ export default defineComponent({
 			handleRegister
 		}
 	}
-})
+}
 </script>
 
 <style lang="less" scoped>

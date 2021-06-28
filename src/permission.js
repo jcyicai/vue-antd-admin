@@ -18,7 +18,7 @@ router.beforeEach(async (to, from, next) => {
 
 	// 判断用户是否登录
 	const hasToken = getToken()
-	debugger
+
 	if (hasToken) {
 		if (to.path === '/login') {
 			// 如果已登录，重定向主页
@@ -26,6 +26,7 @@ router.beforeEach(async (to, from, next) => {
 			NProgress.done()
 		} else {
 			// 判断用户获取到权限
+			console.log(store.getters.roles)
 			const hasRoles = store.getters.roles && store.getters.roles.length > 0
 			if (hasRoles) {
 				next()
@@ -41,12 +42,14 @@ router.beforeEach(async (to, from, next) => {
 					accessRoutes.forEach((route) => {
 						router.addRoute(route)
 					})
+					console.log(router)
 					// 导航不会留下历史记录
 					next({ ...to, replace: true })
 				} catch (error) {
 					// 移除token 返回登录
+					console.log(error)
 					await store.dispatch('user/resetToken')
-					message.error(error)
+					message.error(error || '有错误')
 					next(`/login?redirect=${to.path}`)
 					NProgress.done()
 				}

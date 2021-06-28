@@ -10,7 +10,7 @@
 			mode="inline"
 			theme="dark"
 			:inline-collapsed="false"
-            v-model:selectedKeys="selectedKeys"
+			v-model:selectedKeys="selectedKeys"
 		>
 			<a-menu-item key="1">
 				<PieChartOutlined />
@@ -70,19 +70,19 @@ export default {
 	background: #001529;
 	.layout-logo {
 		height: 48px;
-        line-height: 48px;
-        text-align: center;
-        span {
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            display: inline-block;
-            padding-left: 8px;
-            vertical-align: middle;
-        }
+		line-height: 48px;
+		text-align: center;
+		span {
+			color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			display: inline-block;
+			padding-left: 8px;
+			vertical-align: middle;
+		}
 		img {
 			width: 30px;
-            vertical-align: middle;
+			vertical-align: middle;
 		}
 	}
 }
