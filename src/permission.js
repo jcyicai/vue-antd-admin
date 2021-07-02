@@ -42,7 +42,6 @@ router.beforeEach(async (to, from, next) => {
 					accessRoutes.forEach((route) => {
 						router.addRoute(route)
 					})
-					console.log(router)
 					// 导航不会留下历史记录
 					next({ ...to, replace: true })
 				} catch (error) {

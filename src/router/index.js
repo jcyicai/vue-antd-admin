@@ -4,18 +4,6 @@ import Layout from '@/layout/index.vue'
 
 export const constantRoutes = [
 	{
-		path: '/redirect',
-		name: 'Redirect',
-		component: Layout,
-		hidden: true,
-		children: [
-			{
-				path: '/redirect/:path(.*)',
-				component: () => import('@/views/redirect/index.vue')
-			}
-		]
-	},
-	{
 		path: '/login',
 		name: 'Login',
 		component: () => import('@/views/login/index.vue'),
@@ -24,12 +12,14 @@ export const constantRoutes = [
 	},
 	{
 		path: '/404',
+		name: '404',
 		component: () => import('@/views/error-page/404'),
 		hidden: true
 	},
 	{
 		path: '/',
 		component: Layout,
+		name: 'Dashboard',
 		redirect: '/dashboard',
 		children: [
 			{
@@ -60,7 +50,7 @@ export const asyncRoutes = [
 			}
 		]
 	},
-	{ path: '/:path(.*)*', redirect: '/404', hidden: true }
+	{ path: '/:pathMatch(.*)*', name: 'NoFound', redirect: '/404', hidden: true }
 ]
 
 const router = createRouter({
@@ -70,12 +60,13 @@ const router = createRouter({
 })
 
 export function resetRouter() {
-	router.getRoutes().forEach((route) => {
-		const { name } = route
-		if (name && !['Redirect', 'Login'].includes(name)) {
-			router.hasRoute(name) && router.removeRoute(name)
-		}
+	const newRouter = createRouter({
+		history: createWebHistory(),
+		routes: constantRoutes,
+		scrollBehavior: () => ({ left: 0, top: 0 })
 	})
+
+	router.matcher = newRouter.matcher // reset router  踩坑处！！！
 }
 
 export default router

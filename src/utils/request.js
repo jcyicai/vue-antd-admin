@@ -32,8 +32,7 @@ service.interceptors.response.use(
 		const res = response.data
 
 		if (res.code !== 200) {
-			debugger
-			message.error(res.message || 'Error', 5000)
+			message.error(res.message || 'Error')
 
 			// 50008: 非法token; 50012: 其他用户已登录; 50014: Token国企;
 			if (res.code === 508 || res.code === 512 || res.code === 514) {

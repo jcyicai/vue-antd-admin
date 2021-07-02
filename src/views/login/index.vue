@@ -122,7 +122,7 @@ export default {
 					store
 						.dispatch('user/login', toRaw(formData))
 						.then(() => {
-							router.push({ path: redirect.value || '/' })
+							router.push({ path: '/' })
 							loading.value = false
 						})
 						.catch(() => {
