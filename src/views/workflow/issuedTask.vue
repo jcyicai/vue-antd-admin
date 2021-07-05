@@ -1,6 +1,8 @@
 <template>
 	<div class="container">
-		IssuedTask Page
+		<div class="issued">
+			IssuedTask Page
+		</div>
 	</div>
 </template>
 
@@ -13,4 +15,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.issued {
+	height: 2000px;
+}
+</style>

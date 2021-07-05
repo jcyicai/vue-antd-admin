@@ -26,7 +26,7 @@ export const constantRoutes = [
 				path: 'dashboard',
 				component: () => import('@/views/dashboard/index.vue'),
 				name: 'Dashboard',
-				meta: { title: '首页', icon: 'dashboard' }
+				meta: { title: '控制台', icon: 'DashboardOutlined' }
 			}
 		]
 	}
@@ -37,9 +37,11 @@ export const asyncRoutes = [
 		path: '/workflow',
 		component: Layout,
 		name: 'Workflow',
+		alwaysShow: true,
 		meta: {
 			title: '工作任务',
-			icon: 'documentation'
+			icon: 'FileWordOutlined',
+			roles: ['admin']
 		},
 		children: [
 			{

@@ -7,7 +7,7 @@
 		<div class="header-right">
 			<a-dropdown placement="bottomRight" overlayClassName="jc-dropdown-menu">
 				<div class="user-info">
-					<a-avatar class="user-avatar" :size="24">
+					<a-avatar class="user-avatar" :size="24" :src="avatarUrl">
 						<template #icon><UserOutlined /></template>
 					</a-avatar>
 					<span class="user-name">Jason Chen</span>
@@ -30,15 +30,17 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed, createVNode } from 'vue'
 import {
 	MenuUnfoldOutlined,
 	MenuFoldOutlined,
 	UserOutlined,
-	LoginOutlined
+	LoginOutlined,
+	ExclamationCircleOutlined
 } from '@ant-design/icons-vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+import { Modal } from 'ant-design-vue'
 export default {
 	name: 'NavBar',
 	components: {
@@ -58,16 +60,30 @@ export default {
 		const store = useStore()
 		const router = useRouter()
 		const route = useRoute()
+
+		const avatarUrl = ref(require('@/assets/images/user.png'))
+
 		const handleIconClick = () => {
 			emit('icon-click')
 		}
 
-		const handleLoginOut = async () => {
-			await store.dispatch('user/logout')
-			router.push(`/login`)
+		const handleLoginOut = () => {
+			Modal.confirm({
+				title: '提示',
+				icon: createVNode(ExclamationCircleOutlined),
+				content: '您确定要退出系统吗？',
+				okText: '确认',
+				cancelText: '取消',
+				centered: true,
+				async onOk() {
+					await store.dispatch('user/logout')
+					router.push('/login')
+				}
+			})
 		}
 
 		return {
+			avatarUrl,
 			handleIconClick,
 			handleLoginOut
 		}
@@ -93,6 +109,11 @@ export default {
 	line-height: 48px;
 	display: flex;
 	justify-content: space-between;
+	position: fixed;
+	z-index: 1;
+	right: 0;
+	top: 0;
+	transition: left 0.2s;
 	.user-info {
 		.user-avatar {
 			margin-right: 8px;

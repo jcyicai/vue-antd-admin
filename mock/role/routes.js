@@ -1,17 +1,6 @@
 // Just a mock data
 
 const constantRoutes = [
-	/* 	{
-		path: '/redirect',
-		component: 'layout/Layout',
-		hidden: true,
-		children: [
-			{
-				path: '/redirect/:path(.*)',
-				component: 'views/redirect/index'
-			}
-		]
-	}, */
 	{
 		path: '/login',
 		name: 'Login',
@@ -34,7 +23,7 @@ const constantRoutes = [
 				path: 'dashboard',
 				component: 'views/dashboard/index',
 				name: 'Dashboard',
-				meta: { title: '首页', icon: 'dashboard' }
+				meta: { title: '控制台', icon: 'DashboardOutlined' }
 			}
 		]
 	}
@@ -45,9 +34,10 @@ const asyncRoutes = [
 		path: '/workflow',
 		component: 'layout/Layout',
 		name: 'Workflow',
+		alwaysShow: true,
 		meta: {
 			title: '工作任务',
-			icon: 'documentation',
+			icon: 'FileWordOutlined',
 			roles: ['admin']
 		},
 		children: [

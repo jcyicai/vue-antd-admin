@@ -1,33 +1,30 @@
 <template>
-	<section class="app-main">
-		<!-- 	<transition name="fade-transform" mode="out-in">
-			<keep-alive>
-				<router-view :key="key" />
-			</keep-alive>
-		</transition> -->
-		主页
-	</section>
+	<a-layout-content class="app-main">
+		<router-view v-slot="{ Component, route }">
+			<transition name="fade-transform" mode="out-in">
+				<keep-alive>
+					<component :is="Component" :key="route.path" />
+				</keep-alive>
+			</transition>
+		</router-view>
+	</a-layout-content>
 </template>
 
 <script>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 export default {
 	name: 'AppMain',
 	setup() {
-		const route = useRoute()
-		const key = computed(() => {
-			return route.path
-		})
-		return {
-			key
-		}
+		return {}
 	}
 }
 </script>
 
 <style lang="less" scoped>
 .app-main {
-	min-height: calc(100vh - 84px);
+	height: calc(100vh - 48px);
+	padding: 14px;
+	margin-left: 200px;
+	margin-top: 48px;
+	transition: margin-left 0.2s;
 }
 </style>

@@ -86,8 +86,9 @@ const actions = {
 					commit('SET_ROLES', [])
 					removeToken()
 					resetRouter()
-
-					resolve()
+					setTimeout(() => {
+						resolve()
+					}, 1000)
 				})
 				.catch((error) => {
 					reject(error)

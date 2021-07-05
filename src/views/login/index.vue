@@ -27,6 +27,7 @@
 									v-model:value="formData.password"
 									size="large"
 									placeholder="密码"
+									@keyup.enter="handleRegister"
 								/>
 							</a-form-item>
 							<a-form-item class="enter-x-l" name="isCheckd">
@@ -122,7 +123,7 @@ export default {
 					store
 						.dispatch('user/login', toRaw(formData))
 						.then(() => {
-							router.push({ path: '/' })
+							router.push({ path: redirect.value || '/', query: otherQuery.value })
 							loading.value = false
 						})
 						.catch(() => {

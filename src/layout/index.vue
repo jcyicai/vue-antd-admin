@@ -1,17 +1,20 @@
 <template>
 	<a-layout class="layout-container">
 		<a-layout-sider
-			:style="{ overflow: 'auto', height: '100vh' }"
+			:style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
 			v-model:collapsed="isCollapsed"
 			:trigger="null"
 			collapsible
 		>
 			<sidebar :isCollapsed="isCollapsed" />
 		</a-layout-sider>
-		<!-- 	<sidebar :collapsed="isCollapsed" /> -->
 		<a-layout>
-			<navbar :isCollapsed="isCollapsed" @icon-click="handleIconClick" />
-			<app-main></app-main>
+			<navbar
+				:class="[isCollapsed ? 'lf-80' : 'lf-200']"
+				:isCollapsed="isCollapsed"
+				@icon-click="handleIconClick"
+			/>
+			<app-main :class="[isCollapsed ? 'ml-80' : 'ml-200']"></app-main>
 		</a-layout>
 	</a-layout>
 </template>
@@ -41,5 +44,11 @@ export default {
 }
 .ml-80 {
 	margin-left: 80px;
+}
+.lf-200 {
+	left: 200px;
+}
+.lf-80 {
+	left: 80px;
 }
 </style>
