@@ -4,6 +4,9 @@
 			<menu-unfold-outlined v-if="isCollapsed" class="trigger" @click="handleIconClick" />
 			<menu-fold-outlined v-else class="trigger" @click="handleIconClick" />
 		</div>
+
+		<breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
+
 		<div class="header-right">
 			<a-dropdown placement="bottomRight" overlayClassName="jc-dropdown-menu">
 				<div class="user-info">
@@ -31,6 +34,9 @@
 
 <script>
 import { ref, computed, createVNode } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import { Modal } from 'ant-design-vue'
 import {
 	MenuUnfoldOutlined,
 	MenuFoldOutlined,
@@ -38,16 +44,15 @@ import {
 	LoginOutlined,
 	ExclamationCircleOutlined
 } from '@ant-design/icons-vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useStore } from 'vuex'
-import { Modal } from 'ant-design-vue'
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
 	name: 'NavBar',
 	components: {
 		MenuUnfoldOutlined,
 		MenuFoldOutlined,
 		UserOutlined,
-		LoginOutlined
+		LoginOutlined,
+		Breadcrumb
 	},
 	props: {
 		isCollapsed: {
@@ -108,19 +113,26 @@ export default {
 	height: 48px;
 	line-height: 48px;
 	display: flex;
-	justify-content: space-between;
 	position: fixed;
 	z-index: 1;
 	right: 0;
 	top: 0;
 	transition: left 0.2s;
 	.user-info {
+		cursor: pointer;
 		.user-avatar {
 			margin-right: 8px;
 		}
 		.user-name {
 			vertical-align: middle;
 		}
+	}
+	.header-right {
+		margin-left: auto;
+	}
+	.breadcrumb-container {
+		line-height: 48px;
+		margin-left: 20px;
 	}
 }
 </style>

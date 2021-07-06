@@ -35,6 +35,7 @@ const asyncRoutes = [
 		component: 'layout/Layout',
 		name: 'Workflow',
 		alwaysShow: true,
+		redirect: 'issuedTask',
 		meta: {
 			title: '工作任务',
 			icon: 'FileWordOutlined',
@@ -45,7 +46,7 @@ const asyncRoutes = [
 				path: 'issuedTask',
 				component: () => import('@/views/workflow/issuedTask'),
 				name: 'IssuedTask',
-				meta: { title: '已发工作', roles: ['admin'] }
+				meta: { title: '已发工作', activeMenu: '/workflow/issuedTask', roles: ['admin'] }
 			}
 		]
 	},

@@ -24,7 +24,7 @@
 			</template>
 			<template v-for="child in item.children" :key="child.path">
 				<router-link v-if="child.meta" :to="resolvePath(child.path)">
-					<a-menu-item>{{ child.meta.title }}</a-menu-item>
+					<a-menu-item :key="resolvePath(child.path)">{{ child.meta.title }}</a-menu-item>
 				</router-link>
 			</template>
 		</a-sub-menu>
@@ -82,7 +82,6 @@ export default {
 			if (isExternal(props.basePath)) {
 				return props.basePath
 			}
-			console.log(path.resolve(props.basePath, routePath))
 			return path.resolve(props.basePath, routePath)
 		}
 

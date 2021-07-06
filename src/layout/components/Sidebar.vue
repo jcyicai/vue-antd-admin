@@ -11,7 +11,12 @@
 				<img alt="JC Admin" src="../../assets/images/logo-jc.png" />
 			</router-link>
 		</div>
-		<a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys">
+		<a-menu
+			mode="inline"
+			theme="dark"
+			v-model:selectedKeys="selectedKeys"
+			v-model:openKeys="openKeys"
+		>
 			<sidebar-item
 				v-for="route in permission_routes"
 				:key="route.path"
@@ -32,9 +37,10 @@ import {
 	InboxOutlined,
 	AppstoreOutlined
 } from '@ant-design/icons-vue'
-import { ref, computed, onMounted } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 import { useStore } from 'vuex'
 import SidebarItem from './SidebarItem'
+import { useRoute } from 'vue-router'
 export default {
 	name: 'Sidebar',
 	components: {
@@ -55,13 +61,26 @@ export default {
 	},
 	setup(props) {
 		const store = useStore()
+		const route = useRoute()
 
-		const selectedKeys = ref(['dashboard'])
+		const selectedKeys = ref([])
+		const openKeys = ref([])
+
+		watch(
+			() => route.path,
+			(path) => {
+				selectedKeys.value = path.indexOf('/', 1) > -1 ? [path] : [path.substr(1, path.length)]
+
+				openKeys.value = path.indexOf('/', 1) > -1 ? [path.substr(0, path.indexOf('/', 1))] : []
+			},
+			{ immediate: true }
+		)
 
 		const permission_routes = computed(() => store.getters.permission_routes)
 
 		return {
 			selectedKeys,
+			openKeys,
 			permission_routes
 		}
 	}

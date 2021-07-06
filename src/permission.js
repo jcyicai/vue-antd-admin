@@ -26,7 +26,6 @@ router.beforeEach(async (to, from, next) => {
 			NProgress.done()
 		} else {
 			// 判断用户获取到权限
-			console.log(store.getters.roles)
 			const hasRoles = store.getters.roles && store.getters.roles.length > 0
 			if (hasRoles) {
 				next()

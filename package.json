@@ -12,9 +12,12 @@
     "ant-design-vue": "^2.2.0-beta.5",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "husky": "^7.0.0",
     "js-cookie": "^2.2.1",
+    "lint-staged": "^11.0.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
+    "path-to-regexp": "^6.2.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.8",
     "vuex": "^4.0.1"
@@ -29,9 +32,12 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.0.0",
+    "husky": "^7.0.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
+    "lint-staged": "^11.0.0",
     "mockjs": "^1.1.0",
+    "path-to-regexp": "^6.2.0",
     "style-resources-loader": "^1.4.1",
     "vue-cli-plugin-style-resources-loader": "^0.1.5"
   },
@@ -53,5 +59,16 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }
