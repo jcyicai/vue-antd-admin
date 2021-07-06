@@ -8,6 +8,31 @@
 		<breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
 		<div class="header-right">
+			<div class="header-right-info">
+				<a-popover placement="bottom" trigger="click" :overlayClassName="jcMsgPopover">
+					<template #content>
+						<a-list :dataSource="data">
+							<template #renderItem="{ item }">
+								<a-list-item>
+									<a-list-item-meta description="这是一条消息内容">
+										<template #title>
+											<a href="#">{{ item.title }}</a>
+										</template>
+										<template #avatar>
+											<a-avatar
+												src="https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png"
+											/>
+										</template>
+									</a-list-item-meta>
+								</a-list-item>
+							</template>
+						</a-list>
+					</template>
+					<a-badge dot class="jc-header-badge">
+						<BellOutlined class="info-icon" />
+					</a-badge>
+				</a-popover>
+			</div>
 			<a-dropdown placement="bottomRight" overlayClassName="jc-dropdown-menu">
 				<div class="user-info">
 					<a-avatar class="user-avatar" :size="24" :src="avatarUrl">
@@ -33,7 +58,7 @@
 </template>
 
 <script>
-import { ref, computed, createVNode } from 'vue'
+import { ref, reactive, computed, createVNode } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { Modal } from 'ant-design-vue'
@@ -42,7 +67,8 @@ import {
 	MenuFoldOutlined,
 	UserOutlined,
 	LoginOutlined,
-	ExclamationCircleOutlined
+	ExclamationCircleOutlined,
+	BellOutlined
 } from '@ant-design/icons-vue'
 import Breadcrumb from '@/components/Breadcrumb'
 export default {
@@ -52,7 +78,8 @@ export default {
 		MenuFoldOutlined,
 		UserOutlined,
 		LoginOutlined,
-		Breadcrumb
+		Breadcrumb,
+		BellOutlined
 	},
 	props: {
 		isCollapsed: {
@@ -67,6 +94,21 @@ export default {
 		const route = useRoute()
 
 		const avatarUrl = ref(require('@/assets/images/user.png'))
+		const jcMsgPopover = ref('jc-msg-popover')
+		const data = ref([
+			{
+				title: '合同审批'
+			},
+			{
+				title: '资金审批'
+			},
+			{
+				title: '开票审批'
+			},
+			{
+				title: '出库审批'
+			}
+		])
 
 		const handleIconClick = () => {
 			emit('icon-click')
@@ -88,7 +130,9 @@ export default {
 		}
 
 		return {
+			data,
 			avatarUrl,
+			jcMsgPopover,
 			handleIconClick,
 			handleLoginOut
 		}
@@ -103,6 +147,10 @@ export default {
 			min-width: 140px;
 		}
 	}
+}
+.jc-msg-popover {
+	max-width: 300px;
+	min-width: 250px;
 }
 </style>
 
@@ -129,6 +177,25 @@ export default {
 	}
 	.header-right {
 		margin-left: auto;
+		display: flex;
+		.header-right-info {
+			margin-right: 20px;
+			height: 48px;
+			line-height: 48px;
+			.jc-header-badge {
+				height: 48px;
+				line-height: 48px;
+				::v-deep .ant-badge-dot {
+					top: 14px;
+				}
+			}
+			.info-icon {
+				font-size: 16px;
+				vertical-align: middle;
+				padding: 0 4px;
+				cursor: pointer;
+			}
+		}
 	}
 	.breadcrumb-container {
 		line-height: 48px;

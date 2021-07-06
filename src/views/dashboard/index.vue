@@ -1,8 +1,12 @@
 <template>
-	<div class="container"> dashbord页面</div>
+	<div class="container">
+		<a-tag color="pink">pink</a-tag>
+		<a-tag color="red">red</a-tag>
+	</div>
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
 	name: 'Dashboard',
 	setup() {
@@ -11,4 +15,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>
