@@ -22,7 +22,6 @@ export default {
 <style lang="less" scoped>
 .app-main {
 	height: calc(100vh - 48px);
-	padding: 14px;
 	margin-left: 200px;
 	margin-top: 48px;
 	transition: margin-left 0.2s;

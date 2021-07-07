@@ -166,6 +166,7 @@ export default {
 	right: 0;
 	top: 0;
 	transition: left 0.2s;
+	box-shadow: 0 1px 4px #eee;
 	.user-info {
 		cursor: pointer;
 		.user-avatar {
@@ -185,7 +186,7 @@ export default {
 			.jc-header-badge {
 				height: 48px;
 				line-height: 48px;
-				::v-deep .ant-badge-dot {
+				:deep .ant-badge-dot {
 					top: 14px;
 				}
 			}
