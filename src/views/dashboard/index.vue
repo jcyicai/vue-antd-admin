@@ -1,6 +1,6 @@
 <template>
 	<div class="dashboard-container">
-		<div class="home-header">
+		<div class="home-header enter-x">
 			<div class="header-left">
 				<div class="header-avatar">
 					<a-avatar :size="70" :src="avatarUrl">
@@ -27,7 +27,7 @@
 
 		<a-row :gutter="20" class="home-main">
 			<a-col :span="16" class="home-left">
-				<a-card class="project-box" title="进行中的项目" :loading="projectLoading">
+				<a-card class="project-box enter-y" title="进行中的项目" :loading="loading">
 					<template #extra>
 						<a href="#">更多</a>
 					</template>
@@ -43,7 +43,7 @@
 						</a-card>
 					</a-card-grid>
 				</a-card>
-				<a-card class="pending-box" title="待办任务" :loading="pendingLoading">
+				<a-card class="pending-box enter-y" title="待办任务" :loading="loading">
 					<template #extra>
 						<a href="#">更多</a>
 					</template>
@@ -66,12 +66,12 @@
 				</a-card>
 			</a-col>
 			<a-col :span="8" class="home-right">
-				<a-card class="chart-box" title="活动指数">
+				<a-card class="chart-box enter-y" title="活动指数" :loading="loading">
 					<div>
 						<Chart />
 					</div>
 				</a-card>
-				<a-card class="black-box" title="黑名单">
+				<a-card class="black-box enter-y" title="黑名单" :loading="loading">
 					<div>
 						<ul>
 							<li>上海虎扑体育有限公司</li>
@@ -89,7 +89,7 @@
 import { timeFix } from '@/utils'
 import Chart from '@/components/Charts/UserTargetChart'
 import { UserOutlined } from '@ant-design/icons-vue'
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 export default {
 	name: '',
 	components: { Chart, UserOutlined },
@@ -97,8 +97,7 @@ export default {
 		const timeFormat = timeFix()
 		const timeToFix = ref(timeFormat)
 		const avatarUrl = ref(require('@/assets/images/user.png'))
-		const projectLoading = ref(false)
-		const pendingLoading = ref(false)
+		const loading = ref(true)
 		const projectData = reactive([
 			{ title: '阿里', content: 'this is a test', userName: 'Jason Chen', date: '2021-07-07' },
 			{ title: '百度', content: 'this is a test', userName: 'Jason Chen', date: '2021-07-07' },
@@ -117,11 +116,17 @@ export default {
 			{ title: '项目申请', content: 'this is a test' },
 			{ title: '项目申请', content: 'this is a test' }
 		])
+
+		onMounted(() => {
+			setTimeout(() => {
+				loading.value = false
+			}, 1000)
+		})
+
 		return {
 			timeToFix,
 			avatarUrl,
-			projectLoading,
-			pendingLoading,
+			loading,
 			projectData,
 			pendingData
 		}
@@ -131,6 +136,7 @@ export default {
 
 <style lang="less" scoped>
 .dashboard-container {
+	overflow-x: hidden;
 	.home-header {
 		display: flex;
 		justify-content: space-between;
@@ -228,6 +234,53 @@ export default {
 				}
 			}
 		}
+	}
+}
+</style>
+
+<style lang="less">
+.loopX(@n, @i: 1) when (@i =< @n ) {
+	.enter-x:nth-child(@{i}) {
+		opacity: 0;
+		z-index: @i;
+		animation: enter-x-animation 0.4s ease-in-out 0.3s;
+		animation-fill-mode: forwards;
+		animation-delay: @i * 0.1s;
+	}
+	.loopX(@n, (@i + 1));
+}
+
+.loopY(@n, @i: 1) when (@i =< @n ) {
+	.enter-y:nth-child(@{i}) {
+		opacity: 0;
+		z-index: @i;
+		animation: enter-y-animation 0.4s ease-in-out 0.3s;
+		animation-fill-mode: forwards;
+		animation-delay: @i * 0.1s;
+	}
+	.loopY(@n, (@i + 1));
+}
+
+.loopX(1);
+.loopY(4);
+
+@keyframes enter-x-animation {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes enter-y-animation {
+	from {
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
 </style>

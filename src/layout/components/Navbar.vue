@@ -97,16 +97,16 @@ export default {
 		const jcMsgPopover = ref('jc-msg-popover')
 		const data = ref([
 			{
-				title: '合同审批'
+				title: '消息1审批'
 			},
 			{
-				title: '资金审批'
+				title: '消息2审批'
 			},
 			{
-				title: '开票审批'
+				title: '消息3审批'
 			},
 			{
-				title: '出库审批'
+				title: '消息4审批'
 			}
 		])
 
