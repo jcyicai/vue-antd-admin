@@ -1,6 +1,6 @@
 <template>
 	<div
-		><a-result status="404" title="404" sub-title="抱歉，您访问的页面不存在。">
+		><a-result status="500" title="500" sub-title="抱歉，服务器报告错误。">
 			<template #extra>
 				<a-button type="primary" @click="handleClick">返回首页</a-button>
 			</template>
@@ -11,7 +11,7 @@
 <script>
 import { useRouter } from 'vue-router'
 export default {
-	name: '404',
+	name: '500',
 	setup() {
 		const router = useRouter()
 		const handleClick = () => {

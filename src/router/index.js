@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Layout from '@/layout/index.vue'
+import userCenterRouter from './modules/userCenter'
 
 export const constantRoutes = [
 	{
@@ -11,9 +12,21 @@ export const constantRoutes = [
 		meta: { title: '登录', icon: 'login' }
 	},
 	{
+		path: '/403',
+		name: '403',
+		component: () => import('@/views/error-page/403'),
+		hidden: true
+	},
+	{
 		path: '/404',
 		name: '404',
 		component: () => import('@/views/error-page/404'),
+		hidden: true
+	},
+	{
+		path: '/500',
+		name: '500',
+		component: () => import('@/views/error-page/500'),
 		hidden: true
 	},
 	{
@@ -33,7 +46,7 @@ export const constantRoutes = [
 ]
 
 export const asyncRoutes = [
-	{
+	/* {
 		path: '/workflow',
 		component: Layout,
 		name: 'Workflow',
@@ -52,7 +65,8 @@ export const asyncRoutes = [
 				meta: { title: '已发工作', activeMenu: '/workflow/issuedTask', roles: ['admin'] }
 			}
 		]
-	},
+	}, */
+	userCenterRouter,
 	{ path: '/:pathMatch(.*)*', name: 'NoFound', redirect: '/404', hidden: true }
 ]
 

@@ -1,7 +1,8 @@
 <template>
 	<div class="container">
 		<div class="issued">
-			IssuedTask Page
+			<a-tag color="pink" v-permission="['admin']">pink</a-tag>
+			<a-tag color="blue" v-permission="['editor']">blue</a-tag>
 		</div>
 	</div>
 </template>
@@ -15,8 +16,4 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.issued {
-	height: 2000px;
-}
-</style>
+<style lang="less" scoped></style>

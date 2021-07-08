@@ -46,7 +46,7 @@ export default {
 				},
 				tooltip: {},
 				radar: {
-					name: {
+					axisName: {
 						textStyle: {
 							color: '#666'
 						}

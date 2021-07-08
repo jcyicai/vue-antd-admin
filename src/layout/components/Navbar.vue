@@ -42,7 +42,7 @@
 				</div>
 				<template #overlay>
 					<a-menu>
-						<a-menu-item>
+						<a-menu-item @click="handleToUserCenter">
 							<UserOutlined />
 							个人中心
 						</a-menu-item>
@@ -129,12 +129,17 @@ export default {
 			})
 		}
 
+		const handleToUserCenter = () => {
+			router.push('/userCenter')
+		}
+
 		return {
 			data,
 			avatarUrl,
 			jcMsgPopover,
 			handleIconClick,
-			handleLoginOut
+			handleLoginOut,
+			handleToUserCenter
 		}
 	}
 }
@@ -162,7 +167,7 @@ export default {
 	line-height: 48px;
 	display: flex;
 	position: fixed;
-	z-index: 1;
+	z-index: 9999;
 	right: 0;
 	top: 0;
 	transition: left 0.2s;
