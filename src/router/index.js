@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Layout from '@/layout/index.vue'
 import userCenterRouter from './modules/userCenter'
+import system from './modules/system'
+import permission from './modules/permission'
 
 export const constantRoutes = [
 	{
@@ -66,6 +68,8 @@ export const asyncRoutes = [
 			}
 		]
 	}, */
+	system,
+	permission,
 	userCenterRouter,
 	{ path: '/:pathMatch(.*)*', name: 'NoFound', redirect: '/404', hidden: true }
 ]

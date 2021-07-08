@@ -42,26 +42,6 @@ const constantRoutes = [
 ]
 
 const asyncRoutes = [
-	/* {
-		path: '/workflow',
-		component: 'layout/Layout',
-		name: 'Workflow',
-		alwaysShow: true,
-		redirect: 'issuedTask',
-		meta: {
-			title: '工作任务',
-			icon: 'FileWordOutlined',
-			roles: ['admin']
-		},
-		children: [
-			{
-				path: 'issuedTask',
-				component: () => import('@/views/workflow/issuedTask'),
-				name: 'IssuedTask',
-				meta: { title: '已发工作', activeMenu: '/workflow/issuedTask', roles: ['admin'] }
-			}
-		]
-	}, */
 	{
 		path: '/userCenter',
 		component: 'layout/Layout',
@@ -80,6 +60,52 @@ const asyncRoutes = [
 				name: 'UserSet',
 				meta: {
 					title: '个人设置',
+					roles: ['admin', 'editor']
+				}
+			}
+		]
+	},
+	{
+		path: '/system',
+		component: 'layout/Layout',
+		redirect: 'roleList',
+		alwaysShow: true,
+		name: 'System',
+		meta: {
+			title: '系统管理',
+			icon: 'SettingOutlined',
+			roles: ['admin']
+		},
+		children: [
+			{
+				path: 'roleList',
+				component: 'views/system/roleList',
+				name: 'RoleList',
+				meta: {
+					title: '角色管理',
+					roles: ['admin']
+				}
+			}
+		]
+	},
+	{
+		path: '/permission',
+		component: 'layout/Layout',
+		redirect: 'rolePermissionList',
+		alwaysShow: true,
+		name: 'Permission',
+		meta: {
+			title: '权限管理',
+			icon: 'KeyOutlined',
+			roles: ['admin']
+		},
+		children: [
+			{
+				path: 'rolePermissionList',
+				component: 'views/permission/rolePermissionList',
+				name: 'RolePermissionList',
+				meta: {
+					title: '角色权限分配',
 					roles: ['admin']
 				}
 			}

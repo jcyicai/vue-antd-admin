@@ -167,7 +167,7 @@ export default {
 	line-height: 48px;
 	display: flex;
 	position: fixed;
-	z-index: 9999;
+	z-index: 100;
 	right: 0;
 	top: 0;
 	transition: left 0.2s;

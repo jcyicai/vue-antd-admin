@@ -18,7 +18,7 @@ const userCenterRouter = {
 			name: 'UserSet',
 			meta: {
 				title: '个人设置',
-				roles: ['admin']
+				roles: ['admin', 'editor']
 			}
 		}
 	]
