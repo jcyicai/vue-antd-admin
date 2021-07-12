@@ -3,7 +3,7 @@ import Layout from '@/layout'
 const permissionRouter = {
 	path: '/permission',
 	component: Layout,
-	redirect: 'rolePermissionList',
+	redirect: '/permission/rolePermissionList',
 	alwaysShow: true,
 	name: 'Permission',
 	meta: {
@@ -17,7 +17,7 @@ const permissionRouter = {
 			component: () => import('@/views/permission/rolePermissionList'),
 			name: 'RolePermissionList',
 			meta: {
-				title: '角色权限分配',
+				title: '角色权限',
 				roles: ['admin']
 			}
 		}

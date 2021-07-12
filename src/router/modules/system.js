@@ -3,7 +3,7 @@ import Layout from '@/layout'
 const systemRouter = {
 	path: '/system',
 	component: Layout,
-	redirect: 'roleList',
+	redirect: '/system/roleList',
 	alwaysShow: true,
 	name: 'System',
 	meta: {
@@ -18,6 +18,15 @@ const systemRouter = {
 			name: 'RoleList',
 			meta: {
 				title: '角色管理',
+				roles: ['admin']
+			}
+		},
+		{
+			path: 'approvalFlowConfig',
+			component: () => import('@/views/system/approvalFlowConfig'),
+			name: 'ApprovalFlowConfig',
+			meta: {
+				title: '审批流配置',
 				roles: ['admin']
 			}
 		}

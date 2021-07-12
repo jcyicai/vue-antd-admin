@@ -18,37 +18,68 @@
 					:pagination="pagination"
 					:loading="loading"
 				>
-					<template #operation="{  record,index }">
-						<a>编辑</a>
-						<a-divider type="vertical" />
-						<a>详情</a>
-						<a-divider type="vertical" />
-						<a-popconfirm
-							v-if="roleData.length"
-							cancelText="取消"
-							okText="确认"
-							title="确认删除?"
-							@confirm="handleRowDelete(index, record)"
-						>
-							<a>删除</a>
-						</a-popconfirm>
+					<template #operation>
+						<a @click="handleFlowConfig">配置</a>
 					</template>
 				</a-table>
 			</div>
 		</div>
+
+		<a-modal
+			v-model:visible="visible"
+			title="配置"
+			cancelText="取消"
+			okText="保存"
+			@ok="handleSave"
+			width="100%"
+			wrapClassName="full-modal"
+		>
+			<a-row>
+				<a-col :span="18">
+					<logic-flow :nodeData="nodeData" />
+				</a-col>
+				<a-col :span="6"> </a-col>
+			</a-row>
+		</a-modal>
 	</div>
 </template>
 
 <script>
-import { PlusOutlined } from '@ant-design/icons-vue'
 import { message } from 'ant-design-vue'
-import { deepClone } from '@/utils'
-import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
+import { getRoles, deleteRole } from '@/api/role'
 import { ref, reactive, onMounted } from 'vue'
+import LogicFlow from '@/components/LogicFlow'
 export default {
-	name: 'RoleList',
+	name: 'ApprovalFlowConfig',
+	components: { LogicFlow },
 	setup() {
 		const loading = ref(false)
+		const visible = ref(false)
+		const nodeData = reactive({
+			nodes: [
+				{
+					id: 50,
+					type: 'rect',
+					x: 100,
+					y: 150,
+					text: '你好'
+				},
+				{
+					id: 21,
+					type: 'circle',
+					x: 300,
+					y: 150
+				}
+			],
+			// 边
+			edges: [
+				{
+					type: 'polyline',
+					sourceNodeId: 50,
+					targetNodeId: 21
+				}
+			]
+		})
 
 		const pagination = reactive({
 			total: 0,
@@ -77,13 +108,8 @@ export default {
 				}
 			},
 			{
-				title: '角色名',
+				title: '流程名称',
 				dataIndex: 'name',
-				width: 120
-			},
-			{
-				title: '角色key',
-				dataIndex: 'key',
 				width: 120
 			},
 			{
@@ -97,6 +123,7 @@ export default {
 			}
 		])
 
+		// methods
 		const getRoleData = () => {
 			loading.value = true
 			getRoles().then((res) => {
@@ -116,6 +143,15 @@ export default {
 			message.success('删除成功')
 		}
 
+		const handleFlowConfig = () => {
+			visible.value = true
+		}
+
+		const handleSave = () => {
+			visible.value = false
+		}
+
+		// mounted
 		onMounted(() => {
 			getRoleData()
 		})
@@ -125,12 +161,37 @@ export default {
 			columns,
 			pagination,
 			loading,
+			visible,
+			nodeData,
+
 			getRoleData,
-			handleRowDelete
+			handleRowDelete,
+			handleFlowConfig,
+			handleSave
 		}
 	}
 }
 </script>
+
+<style lang="less">
+.full-modal {
+	.ant-modal {
+		max-width: 100%;
+		top: 0;
+		padding-bottom: 0;
+		margin: 0;
+	}
+	.ant-modal-content {
+		display: flex;
+		flex-direction: column;
+	}
+	.ant-modal-body {
+		flex: 1;
+		padding: 0;
+		height: calc(100vh - 40px);
+	}
+}
+</style>
 
 <style lang="less" scoped>
 .role-container {

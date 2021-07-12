@@ -5,31 +5,46 @@ const constantRoutes = [
 		path: '/login',
 		name: 'Login',
 		component: 'views/login/index',
-		hidden: true
+		hidden: true,
+		meta: {
+			title: '登录'
+		}
 	},
 	{
 		path: '/403',
 		name: '403',
 		component: 'views/error-page/403',
-		hidden: true
+		hidden: true,
+		meta: {
+			title: '403'
+		}
 	},
 	{
 		path: '/404',
 		name: '404',
 		component: 'views/error-page/404',
-		hidden: true
+		hidden: true,
+		meta: {
+			title: '404'
+		}
 	},
 	{
 		path: '/500',
 		name: '500',
 		component: 'views/error-page/500',
-		hidden: true
+		hidden: true,
+		meta: {
+			title: '500'
+		}
 	},
 	{
 		path: '/',
 		component: 'layout/Layout',
 		name: 'Dashboard',
 		redirect: '/dashboard',
+		meta: {
+			title: '控制台'
+		},
 		children: [
 			{
 				path: 'dashboard',
@@ -85,6 +100,15 @@ const asyncRoutes = [
 					title: '角色管理',
 					roles: ['admin']
 				}
+			},
+			{
+				path: 'approvalFlowConfig',
+				component: 'views/system/approvalFlowConfig',
+				name: 'ApprovalFlowConfig',
+				meta: {
+					title: '审批流配置',
+					roles: ['admin']
+				}
 			}
 		]
 	},
@@ -111,7 +135,15 @@ const asyncRoutes = [
 			}
 		]
 	},
-	{ path: '/:pathMatch(.*)*', name: 'NoFound', redirect: '/404', hidden: true }
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'NoFound',
+		redirect: '/404',
+		hidden: true,
+		meta: {
+			title: 'NoFound'
+		}
+	}
 ]
 
 module.exports = {

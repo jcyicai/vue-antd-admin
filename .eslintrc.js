@@ -27,7 +27,7 @@ module.exports = {
     'vue/html-self-closing': 'off',
     'no-unused-vars': 'off',
     'vue/custom-event-name-casing': 'off',
-    'no-use-before-define': 'off',
+    'no-use-before-define': 'off'
 		/* 'vue/singleline-html-element-content-newline': 'off',
 		'vue/multiline-html-element-content-newline': 'off',
 		'no-console': 'off', // 禁用 console
