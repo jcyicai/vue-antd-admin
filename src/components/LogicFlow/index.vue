@@ -10,7 +10,8 @@ import LogicFlow from '@logicflow/core'
 import { Control, Menu, DndPanel, SelectionSelect } from '@logicflow/extension'
 import '@logicflow/core/dist/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
-//import { registerCircle, registerRect } from './registerNode'
+import { registerCircle, registerRect } from './registerNode'
+import { message } from 'ant-design-vue'
 
 LogicFlow.use(Control) // 控制面板
 LogicFlow.use(Menu) // 右键菜单
@@ -25,7 +26,8 @@ export default {
 			default: () => {}
 		}
 	},
-	setup(props) {
+	emits: ['node-click', 'blank-click'],
+	setup(props, { emit }) {
 		// data
 		const lf = ref(null)
 		const config = reactive({
@@ -40,8 +42,8 @@ export default {
 				type: 'dot',
 				size: 10
 			},
-			textEdit: false
-			/* style: {
+			textEdit: false,
+			style: {
 				rect: {
 					// 矩形样式
 					width: 80,
@@ -62,7 +64,7 @@ export default {
 					// 折线
 					stroke: '#187DFF'
 				}
-			} */
+			}
 		})
 
 		// methods
@@ -72,6 +74,9 @@ export default {
 				container: document.querySelector('#flow')
 			})
 			lf.value = lfInstance
+
+			registerCircle(lf.value)
+			registerRect(lf.value)
 
 			lf.value.setPatternItems([
 				{
@@ -92,7 +97,7 @@ export default {
 				},
 				{
 					type: 'rect',
-					text: '用户任务',
+					text: '节点',
 					icon:
 						'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAEFVwZaAAAABGdBTUEAALGPC/xhBQAAAqlJREFUOBF9VM9rE0EUfrMJNUKLihGbpLGtaCOIR8VjQMGDePCgCCIiCNqzCAp2MyYUCXhUtF5E0D+g1t48qAd7CCLqQUQKEWkStcEfVGlLdp/fm3aW2QQdyLzf33zz5m2IsAZ9XhDpyaaIZkTS4ASzK41TFao88GuJ3hsr2pAbipHxuSYyKRugagICGANkfFnNh3HeE2N0b3nN2cgnpcictw5veJIzxmDamSlxxQZicq/mflxhbaH8BLRbuRwNtZp0JAhoplVRUdzmCe/vO27wFuuA3S5qXruGdboy5/PRGFsbFGKo/haRtQHIrM83bVeTrOgNhZReWaYGnE4aUQgTJNvijJFF4jQ8BxJE5xfKatZWmZcTQ+BVgh7s8SgPlCkcec4mGTmieTP4xd7PcpIEg1TX6gdeLW8rTVMVLVvb7ctXoH0Cydl2QOPJBG21STE5OsnbweVYzAnD3A7PVILuY0yiiyDwSm2g441r6rMSgp6iK42yqroI2QoXeJVeA+YeZSa47gZdXaZWQKTrG93rukk/l2Al6Kzh5AZEl7dDQy+JjgFahQjRopSxPbrbvK7GRe9ePWBo1wcU7sYrFZtavXALwGw/7Dnc50urrHJuTPSoO2IMV3gUQGNg87IbSOIY9BpiT9HV7FCZ94nPXb3MSnwHn/FFFE1vG6DTby+r31KAkUktB3Qf6ikUPWxW1BkXSPQeMHHiW0+HAd2GelJsZz1OJegCxqzl+CLVHa/IibuHeJ1HAKzhuDR+ymNaRFM+4jU6UWKXorRmbyqkq/D76FffevwdCp+jN3UAN/C9JRVTDuOxC/oh+EdMnqIOrlYteKSfadVRGLJFJPSB/ti/6K8f0CNymg/iH2gO/f0DwE0yjAFO6l8JaR5j0VPwPwfaYHqOqrCI319WzwhwzNW/aQAAAABJRU5ErkJggg==',
 					cls: 'important-node'
@@ -105,6 +110,32 @@ export default {
 				}
 			])
 			lf.value.render()
+			eventFlow()
+		}
+
+		const eventFlow = () => {
+			// 节点点击
+			lf.value.on('node:click', ({ data }) => {
+				emit('node-click', data)
+			})
+			/* this.lf.on('edge:click', ({ data }) => {
+        console.log('edge:click', data)
+      }) */
+			lf.value.on('connection:not-allowed', (data) => {
+				message.error(data.msg)
+			})
+			// 画布点击
+			lf.value.on('blank:click', (e) => {
+				emit('blank-click', e)
+			})
+		}
+
+		const uppdateNodeEdgeText = (id, val) => {
+			lf.value.updateText(id, val)
+		}
+
+		const getFlowData = () => {
+			return lf.value.getGraphData()
 		}
 
 		// mounted
@@ -115,7 +146,11 @@ export default {
 		return {
 			lf,
 			config,
-			initFlow
+
+			initFlow,
+			getFlowData,
+			eventFlow,
+			uppdateNodeEdgeText
 		}
 	}
 }

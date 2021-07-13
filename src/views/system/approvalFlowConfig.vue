@@ -36,9 +36,19 @@
 		>
 			<a-row>
 				<a-col :span="18">
-					<logic-flow :nodeData="nodeData" />
+					<logic-flow ref="lf" :nodeData="nodeData" @node-click="handleNodeClick" />
 				</a-col>
-				<a-col :span="6"> </a-col>
+				<a-col :span="6" class="node-form">
+					<h1>节点信息</h1>
+					<a-form :model="nodeForm" :labelCol="labelCol">
+						<a-form-item label="节点ID">
+							<a-input v-model:value="nodeForm.id" disabled />
+						</a-form-item>
+						<a-form-item label="节点名称">
+							<a-input v-model:value="nodeForm.name" />
+						</a-form-item>
+					</a-form>
+				</a-col>
 			</a-row>
 		</a-modal>
 	</div>
@@ -47,39 +57,22 @@
 <script>
 import { message } from 'ant-design-vue'
 import { getRoles, deleteRole } from '@/api/role'
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 import LogicFlow from '@/components/LogicFlow'
+import _ from 'lodash'
 export default {
 	name: 'ApprovalFlowConfig',
 	components: { LogicFlow },
 	setup() {
 		const loading = ref(false)
 		const visible = ref(false)
-		const nodeData = reactive({
-			nodes: [
-				{
-					id: 50,
-					type: 'rect',
-					x: 100,
-					y: 150,
-					text: '你好'
-				},
-				{
-					id: 21,
-					type: 'circle',
-					x: 300,
-					y: 150
-				}
-			],
-			// 边
-			edges: [
-				{
-					type: 'polyline',
-					sourceNodeId: 50,
-					targetNodeId: 21
-				}
-			]
+		const nodeData = reactive({})
+		const nodeForm = reactive({
+			id: '',
+			name: ''
 		})
+		const labelCol = { span: 6 }
+		const lf = ref(null)
 
 		const pagination = reactive({
 			total: 0,
@@ -148,8 +141,24 @@ export default {
 		}
 
 		const handleSave = () => {
-			visible.value = false
+			//visible.value = false
+			//console.log(lf.value.getFlowData())
 		}
+
+		const handleNodeClick = (data) => {
+			nodeForm.id = data.id
+			nodeForm.name = data.text?.value
+		}
+
+		// watch
+		watch(
+			() => _.cloneDeep(nodeForm),
+			(curForm, prevForm) => {
+				console.log(curForm, prevForm)
+				lf.value.uppdateNodeEdgeText(curForm.id, curForm.name)
+			},
+			{ deep: true }
+		)
 
 		// mounted
 		onMounted(() => {
@@ -163,11 +172,15 @@ export default {
 			loading,
 			visible,
 			nodeData,
+			nodeForm,
+			labelCol,
+			lf,
 
 			getRoleData,
 			handleRowDelete,
 			handleFlowConfig,
-			handleSave
+			handleSave,
+			handleNodeClick
 		}
 	}
 }
@@ -196,5 +209,13 @@ export default {
 <style lang="less" scoped>
 .role-container {
 	padding: 20px;
+}
+.node-form {
+	padding: 14px;
+	h1 {
+		font-size: 16px;
+		margin-bottom: 8px;
+		font-weight: bold;
+	}
 }
 </style>

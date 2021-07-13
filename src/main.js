@@ -13,6 +13,8 @@ import './permission' //路由权限
 
 import permission from '@/directive/permission/index.js' // 权限按钮
 
+import _ from 'lodash'
+
 const app = createApp(App)
 app.config.productionTip = false
 
