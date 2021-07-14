@@ -193,7 +193,7 @@ export default {
 		const handleOk = () => {
 			// 弹窗确认
 			initModal()
-			console.log(checkedKeys.value)
+			//console.log(checkedKeys.value)
 		}
 
 		const handleCancel = () => {

@@ -35,7 +35,7 @@ export const constantRoutes = [
 		path: '/',
 		component: Layout,
 		name: 'Dashboard',
-		redirect: '/dashboard',
+		redirect: 'dashboard',
 		children: [
 			{
 				path: 'dashboard',
@@ -82,7 +82,7 @@ const router = createRouter({
 
 export function resetRouter() {
 	const newRouter = createRouter({
-		history: createWebHistory(),
+		history: createWebHistory('/'),
 		routes: constantRoutes,
 		scrollBehavior: () => ({ left: 0, top: 0 })
 	})

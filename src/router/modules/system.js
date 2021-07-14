@@ -3,7 +3,7 @@ import Layout from '@/layout'
 const systemRouter = {
 	path: '/system',
 	component: Layout,
-	redirect: '/system/roleList',
+	redirect: 'roleList',
 	alwaysShow: true,
 	name: 'System',
 	meta: {

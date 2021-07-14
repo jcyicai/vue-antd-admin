@@ -7,9 +7,11 @@
 					<a-form layout="vertical" :model="formState">
 						<a-form-item label="当前密码" required>
 							<a-input-password v-model:value="formState.oldPassword" placeholder="请输入" />
+							<!-- <password v-model="formState.oldPassword" /> -->
 						</a-form-item>
 						<a-form-item label="新密码" required>
 							<a-input-password v-model:value="formState.newPassword" placeholder="请输入" />
+							<password-meter @score="onScore" :password="formState.newPassword" />
 						</a-form-item>
 						<a-form-item label="确认密码" required>
 							<a-input-password v-model:value="formState.confirmPassword" placeholder="请输入" />
@@ -27,9 +29,11 @@
 <script>
 import { message } from 'ant-design-vue'
 import { ref, reactive } from 'vue'
+import PasswordMeter from 'vue-simple-password-meter'
 
 export default {
 	name: 'SafeSet',
+	components: { PasswordMeter },
 	setup() {
 		const formState = reactive({
 			oldPassword: '',
@@ -37,13 +41,23 @@ export default {
 			confirmPassword: ''
 		})
 
+		const score = ref(null)
+
+		const onScore = (payload) => {
+			//console.log(payload.score) // from 0 to 4
+			//console.log(payload.strength) // one of : 'risky', 'guessable', 'weak', 'safe' , 'secure'
+			score.value = payload.score
+		}
+
 		const handleUpdate = () => {
 			message.success('更新成功')
 		}
 
 		return {
 			formState,
-			handleUpdate
+			score,
+			handleUpdate,
+			onScore
 		}
 	}
 }
@@ -56,5 +70,32 @@ export default {
 	font-weight: 500;
 	line-height: 28px;
 	margin-bottom: 12px;
+}
+
+.po-password-strength-bar {
+	border-radius: 2px;
+	transition: all 0.2s linear;
+	height: 5px;
+	margin-top: 8px;
+}
+
+.po-password-strength-bar.risky {
+	background-color: #f95e68;
+}
+
+.po-password-strength-bar.guessable {
+	background-color: #fb964d;
+}
+
+.po-password-strength-bar.weak {
+	background-color: #fdd244;
+}
+
+.po-password-strength-bar.safe {
+	background-color: #b0dc53;
+}
+
+.po-password-strength-bar.secure {
+	background-color: #35cc62;
 }
 </style>

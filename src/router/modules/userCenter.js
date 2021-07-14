@@ -3,7 +3,7 @@ import Layout from '@/layout'
 const userCenterRouter = {
 	path: '/userCenter',
 	component: Layout,
-	redirect: '/userCenter/userSet',
+	redirect: 'userSet',
 	alwaysShow: true,
 	name: 'UserCenter',
 	meta: {

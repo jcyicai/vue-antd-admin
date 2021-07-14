@@ -24,6 +24,7 @@
     "path-to-regexp": "^6.2.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.8",
+    "vue-simple-password-meter": "^1.0.3",
     "vuex": "^4.0.1"
   },
   "devDependencies": {

@@ -154,7 +154,7 @@ export default {
 		watch(
 			() => _.cloneDeep(nodeForm),
 			(curForm, prevForm) => {
-				console.log(curForm, prevForm)
+				//console.log(curForm, prevForm)
 				lf.value.uppdateNodeEdgeText(curForm.id, curForm.name)
 			},
 			{ deep: true }

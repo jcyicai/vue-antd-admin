@@ -3,7 +3,7 @@ import Layout from '@/layout'
 const permissionRouter = {
 	path: '/permission',
 	component: Layout,
-	redirect: '/permission/rolePermissionList',
+	redirect: 'rolePermissionList',
 	alwaysShow: true,
 	name: 'Permission',
 	meta: {
