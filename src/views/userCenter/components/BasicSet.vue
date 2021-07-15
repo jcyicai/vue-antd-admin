@@ -62,6 +62,7 @@ export default {
 		LoadingOutlined
 	},
 	setup() {
+		// data
 		const store = useStore()
 		const formState = reactive({
 			userName: '',
@@ -72,6 +73,7 @@ export default {
 		const loading = ref(false)
 		const fileList = ref([])
 
+		// methods
 		const handleUpdate = () => {
 			message.success('更新成功')
 		}
@@ -105,6 +107,7 @@ export default {
 			return isJpgOrPng && isLt2M
 		}
 
+		// mounted
 		onMounted(() => {
 			formState.userName = store.getters.name
 			imageUrl.value = store.getters.avatar
@@ -115,6 +118,7 @@ export default {
 			imageUrl,
 			loading,
 			fileList,
+
 			handleUpdate,
 			handleChange,
 			beforeUpload

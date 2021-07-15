@@ -7,7 +7,6 @@
 					<a-form layout="vertical" :model="formState">
 						<a-form-item label="当前密码" required>
 							<a-input-password v-model:value="formState.oldPassword" placeholder="请输入" />
-							<!-- <password v-model="formState.oldPassword" /> -->
 						</a-form-item>
 						<a-form-item label="新密码" required>
 							<a-input-password v-model:value="formState.newPassword" placeholder="请输入" />
@@ -35,6 +34,7 @@ export default {
 	name: 'SafeSet',
 	components: { PasswordMeter },
 	setup() {
+		// data
 		const formState = reactive({
 			oldPassword: '',
 			newPassword: '',
@@ -43,6 +43,7 @@ export default {
 
 		const score = ref(null)
 
+		// methods
 		const onScore = (payload) => {
 			//console.log(payload.score) // from 0 to 4
 			//console.log(payload.strength) // one of : 'risky', 'guessable', 'weak', 'safe' , 'secure'

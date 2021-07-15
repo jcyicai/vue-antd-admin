@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import { message } from 'ant-design-vue'
-import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
+import { getRoles } from '@/api/role'
 import { ref, reactive, onMounted, watch, nextTick } from 'vue'
+
 export default {
 	name: 'RolePermissionList',
 	setup() {

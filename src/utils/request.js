@@ -34,7 +34,7 @@ service.interceptors.response.use(
 		if (res.code !== 200) {
 			message.error(res.message || 'Error')
 
-			// 50008: 非法token; 50012: 其他用户已登录; 50014: Token国企;
+			// 508: 非法token; 512: 其他用户已登录; 514: Token国企;
 			if (res.code === 508 || res.code === 512 || res.code === 514) {
 				// 重新登录
 				Modal.confirm({

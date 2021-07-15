@@ -17,7 +17,7 @@ const roles = [
 		key: 'editor',
 		name: 'editor',
 		description: 'Normal Editor. Can see all pages except permission page',
-		routes: routes.filter((i) => i.path !== '/permission') // just a mock
+		routes: routes.filter((i) => i.path !== '/permission')
 	},
 	{
 		id: 3,
@@ -41,7 +41,6 @@ const roles = [
 ]
 
 module.exports = [
-	// mock get all routes form server
 	{
 		url: '/jc-admin/routes',
 		type: 'get',
@@ -52,8 +51,6 @@ module.exports = [
 			}
 		}
 	},
-
-	// mock get all roles form server
 	{
 		url: '/jc-admin/roles',
 		type: 'get',
@@ -65,7 +62,7 @@ module.exports = [
 		}
 	},
 
-	// add role
+	// 添加role
 	{
 		url: '/jc-admin/role',
 		type: 'post',
@@ -77,7 +74,7 @@ module.exports = [
 		}
 	},
 
-	// update role
+	// 更新role
 	{
 		url: '/jc-admin/role/[A-Za-z0-9]',
 		type: 'put',
@@ -89,7 +86,7 @@ module.exports = [
 		}
 	},
 
-	// delete role
+	// 删除role
 	{
 		url: '/jc-admin/role/[A-Za-z0-9]',
 		type: 'delete',

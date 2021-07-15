@@ -94,14 +94,13 @@
 </template>
 
 <script>
-import { PlusOutlined } from '@ant-design/icons-vue'
 import { message } from 'ant-design-vue'
-import { deepClone } from '@/utils'
-import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
+import { getRoles, deleteRole } from '@/api/role'
 import { ref, reactive, onMounted, computed } from 'vue'
 export default {
 	name: 'RoleList',
 	setup() {
+		// data
 		const titleState = {
 			1: '新增',
 			2: '编辑',

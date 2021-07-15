@@ -22,8 +22,7 @@ app.config.productionTip = false
 Object.keys(antIcons).forEach((key) => {
 	app.component(key, antIcons[key])
 })
-
-app.config.globalProperties.$antIcons = antIcons // 添加到全局
+app.config.globalProperties.$antIcons = antIcons
 
 app.directive('permission', permission)
 

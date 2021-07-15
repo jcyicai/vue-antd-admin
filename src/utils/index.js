@@ -29,10 +29,10 @@ export function parseTime(time, cFormat) {
 	} else {
 		if (typeof time === 'string') {
 			if (/^[0-9]+$/.test(time)) {
-				// support "1548221490638"
+				// 支持时间戳 "1548221490638"
 				time = parseInt(time)
 			} else {
-				// support safari
+				// 支持safari
 				time = time.replace(new RegExp(/-/gm), '/')
 			}
 		}
@@ -53,7 +53,7 @@ export function parseTime(time, cFormat) {
 	}
 	const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
 		const value = formatObj[key]
-		// Note: getDay() returns 0 on Sunday
+		// 注意: getDay() 在星期天返回0
 		if (key === 'a') {
 			return ['日', '一', '二', '三', '四', '五', '六'][value]
 		}
@@ -121,7 +121,7 @@ export function getQueryObject(url) {
  * @returns {number} output value
  */
 export function byteLength(str) {
-	// returns the byte length of an utf8 string
+	// 返回utf8字符串的字节长度
 	let s = str.length
 	for (var i = str.length - 1; i >= 0; i--) {
 		const code = str.charCodeAt(i)
@@ -193,7 +193,7 @@ export function html2Text(val) {
 }
 
 /**
- * Merges two objects, giving the last one precedence
+ * 合并两个对象，最后一个对象优先
  * @param {Object} target
  * @param {(Object|Array)} source
  * @returns {Object}
@@ -289,9 +289,7 @@ export function debounce(func, wait, immediate) {
 }
 
 /**
- * This is just a simple version of deep copy
- * Has a lot of edge cases bug
- * If you want to use a perfect deep copy, use lodash's _.cloneDeep
+ * 简单的深拷贝，存在bug，建议使用lodash的_.cloneDeep
  * @param {Object} source
  * @returns {Object}
  */
@@ -328,7 +326,7 @@ export function createUniqueString() {
 }
 
 /**
- * Check if an element has a class
+ * 是否存在class
  * @param {HTMLElement} elm
  * @param {string} cls
  * @returns {boolean}
@@ -338,7 +336,7 @@ export function hasClass(ele, cls) {
 }
 
 /**
- * Add class to element
+ * 添加class
  * @param {HTMLElement} elm
  * @param {string} cls
  */
@@ -347,7 +345,7 @@ export function addClass(ele, cls) {
 }
 
 /**
- * Remove class from element
+ * 移除class
  * @param {HTMLElement} elm
  * @param {string} cls
  */

@@ -90,10 +90,12 @@ import { timeFix } from '@/utils'
 import Chart from '@/components/Charts/UserTargetChart'
 import { UserOutlined } from '@ant-design/icons-vue'
 import { reactive, ref, onMounted } from 'vue'
+
 export default {
-	name: '',
+	name: 'Dashboard',
 	components: { Chart, UserOutlined },
 	setup() {
+		// data
 		const timeFormat = timeFix()
 		const timeToFix = ref(timeFormat)
 		const avatarUrl = ref(require('@/assets/images/user.png'))
@@ -117,6 +119,7 @@ export default {
 			{ title: '项目申请', content: 'this is a test' }
 		])
 
+		// mounted
 		onMounted(() => {
 			setTimeout(() => {
 				loading.value = false

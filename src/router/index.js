@@ -48,26 +48,6 @@ export const constantRoutes = [
 ]
 
 export const asyncRoutes = [
-	/* {
-		path: '/workflow',
-		component: Layout,
-		name: 'Workflow',
-		alwaysShow: true,
-		redirect: 'issuedTask',
-		meta: {
-			title: '工作任务',
-			icon: 'FileWordOutlined',
-			roles: ['admin']
-		},
-		children: [
-			{
-				path: 'issuedTask',
-				component: () => import('@/views/workflow/issuedTask.vue'),
-				name: 'IssuedTask',
-				meta: { title: '已发工作', activeMenu: '/workflow/issuedTask', roles: ['admin'] }
-			}
-		]
-	}, */
 	system,
 	permission,
 	userCenterRouter,

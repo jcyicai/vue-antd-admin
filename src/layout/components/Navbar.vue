@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed, createVNode } from 'vue'
+import { ref, createVNode } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { Modal } from 'ant-design-vue'
@@ -71,6 +71,7 @@ import {
 	BellOutlined
 } from '@ant-design/icons-vue'
 import Breadcrumb from '@/components/Breadcrumb'
+
 export default {
 	name: 'NavBar',
 	components: {
@@ -89,9 +90,9 @@ export default {
 	},
 	emits: ['icon-click'],
 	setup(props, { emit }) {
+		// data
 		const store = useStore()
 		const router = useRouter()
-		const route = useRoute()
 
 		const avatarUrl = ref(require('@/assets/images/user.png'))
 		const jcMsgPopover = ref('jc-msg-popover')
@@ -110,6 +111,7 @@ export default {
 			}
 		])
 
+		// methods
 		const handleIconClick = () => {
 			emit('icon-click')
 		}
@@ -137,6 +139,7 @@ export default {
 			data,
 			avatarUrl,
 			jcMsgPopover,
+
 			handleIconClick,
 			handleLoginOut,
 			handleToUserCenter

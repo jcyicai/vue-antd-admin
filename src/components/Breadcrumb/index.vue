@@ -13,13 +13,16 @@
 import * as pathToRegexp from 'path-to-regexp'
 import { ref, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+
 export default {
 	name: 'Breadcrumn',
 	setup() {
+		// data
 		const levelList = ref(null)
 		const route = useRoute()
 		const router = useRouter()
 
+		// methods
 		const getBreadcrumb = () => {
 			// 只显示带有meta.title的路由
 			let matched = route.matched.filter((item) => item.meta && item.meta.title)
@@ -57,6 +60,7 @@ export default {
 			router.push(pathCompile(path))
 		}
 
+		// watch
 		watch(
 			() => route.path,
 			(path) => {
@@ -68,6 +72,7 @@ export default {
 			{ immediate: true }
 		)
 
+		// mounted
 		onMounted(() => {
 			getBreadcrumb()
 		})

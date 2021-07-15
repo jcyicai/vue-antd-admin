@@ -26,10 +26,14 @@ export default {
 	name: 'Layout',
 	components: { Sidebar, Navbar, AppMain },
 	setup() {
+		// data
 		const isCollapsed = ref(false)
+
+		// methods
 		const handleIconClick = () => {
 			isCollapsed.value = !isCollapsed.value
 		}
+
 		return {
 			isCollapsed,
 			handleIconClick

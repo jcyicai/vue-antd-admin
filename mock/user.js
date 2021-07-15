@@ -11,19 +11,19 @@ const users = {
 	'admin-token': {
 		roles: ['admin'],
 		introduction: 'I am a super administrator',
-		avatar: 'http://resource.cycblog.cn/image/admin_logo.png',
+		avatar: '',
 		name: 'Jason Chen'
 	},
 	'editor-token': {
 		roles: ['editor'],
 		introduction: 'I am an editor',
-		avatar: 'http://resource.cycblog.cn/image/admin_logo.png',
+		avatar: '',
 		name: 'Normal Editor'
 	}
 }
 
 module.exports = [
-	// user login
+	// 用户登录
 	{
 		url: '/jc-admin/user/login',
 		type: 'post',
@@ -31,7 +31,7 @@ module.exports = [
 			const { username } = config.body
 			const token = tokens[username]
 
-			// mock error
+			// mock错误
 			if (!token) {
 				return {
 					code: 604,
@@ -46,7 +46,7 @@ module.exports = [
 		}
 	},
 
-	// get user info
+	// 获取用户信息
 	{
 		url: '/jc-admin/user/info.*',
 		type: 'get',
@@ -55,7 +55,7 @@ module.exports = [
 			const { token } = config.query
 			const info = users[token]
 
-			// mock error
+			// mock错误
 			if (!info) {
 				return {
 					code: 508,
@@ -70,7 +70,7 @@ module.exports = [
 		}
 	},
 
-	// user logout
+	// 用户退出
 	{
 		url: '/jc-admin/user/logout',
 		type: 'post',

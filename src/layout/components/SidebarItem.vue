@@ -32,9 +32,10 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { isExternal } from '@/utils/validate'
 import path from 'path'
+
 export default {
 	name: 'SidebarItem',
 	props: {
@@ -48,25 +49,26 @@ export default {
 		}
 	},
 	setup(props) {
+		// data
 		const onlyOneChild = ref(null)
 
+		// methods
 		const hasOneShowingChild = (children = [], parent) => {
 			const showingChildren = children.filter((item) => {
 				if (item.hidden) {
 					return false
 				} else {
-					// Temp set(will be used if only has one showing child)
 					onlyOneChild.value = item
 					return true
 				}
 			})
 
-			// When there is only one child router, the child router is displayed by default
+			// 当只有一个子路由时，默认显示该子路由
 			if (showingChildren.length === 1) {
 				return true
 			}
 
-			// Show parent if there are no child router to display
+			// 如果没有子路由显示，则显示父路由
 			if (showingChildren.length === 0) {
 				onlyOneChild.value = { ...parent, path: '', noShowingChildren: true }
 				return true

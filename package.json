@@ -1,6 +1,7 @@
 {
   "name": "jc-admin",
   "version": "1.0.0",
+  "description": "a vue3 admin project",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",

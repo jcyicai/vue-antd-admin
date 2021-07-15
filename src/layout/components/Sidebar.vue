@@ -41,6 +41,7 @@ import { ref, reactive, computed, watch } from 'vue'
 import { useStore } from 'vuex'
 import SidebarItem from './SidebarItem'
 import { useRoute } from 'vue-router'
+
 export default {
 	name: 'Sidebar',
 	components: {
@@ -59,13 +60,17 @@ export default {
 			default: false
 		}
 	},
-	setup(props) {
+	setup() {
+		// data
 		const store = useStore()
 		const route = useRoute()
 
 		const selectedKeys = ref([])
 		const openKeys = ref([])
 
+		const permission_routes = computed(() => store.getters.permission_routes)
+
+		// watch
 		watch(
 			() => route.path,
 			(path) => {
@@ -75,8 +80,6 @@ export default {
 			},
 			{ immediate: true }
 		)
-
-		const permission_routes = computed(() => store.getters.permission_routes)
 
 		return {
 			selectedKeys,

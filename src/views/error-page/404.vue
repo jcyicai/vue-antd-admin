@@ -10,13 +10,18 @@
 
 <script>
 import { useRouter } from 'vue-router'
+
 export default {
 	name: '404',
 	setup() {
+		// data
 		const router = useRouter()
+
+		// methods
 		const handleClick = () => {
 			router.push('/')
 		}
+
 		return {
 			handleClick
 		}

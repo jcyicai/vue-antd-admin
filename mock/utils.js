@@ -21,9 +21,7 @@ function param2Obj(url) {
 }
 
 /**
- * This is just a simple version of deep copy
- * Has a lot of edge cases bug
- * If you want to use a perfect deep copy, use lodash's _.cloneDeep
+ * 简单的深拷贝
  * @param {Object} source
  * @returns {Object}
  */

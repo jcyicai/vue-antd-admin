@@ -1,5 +1,3 @@
-// Just a mock data
-
 const constantRoutes = [
 	{
 		path: '/login',

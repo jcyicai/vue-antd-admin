@@ -45,7 +45,6 @@ router.beforeEach(async (to, from, next) => {
 					next({ ...to, replace: true })
 				} catch (error) {
 					// 移除token 返回登录
-					console.log(error)
 					await store.dispatch('user/resetToken')
 					message.error(error || '有错误')
 					next(`/login?redirect=${to.path}`)
@@ -54,7 +53,6 @@ router.beforeEach(async (to, from, next) => {
 			}
 		}
 	} else {
-		// 没有token
 		if (whiteList.indexOf(to.path) !== -1) {
 			next()
 		} else {

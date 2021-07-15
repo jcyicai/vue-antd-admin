@@ -29,6 +29,9 @@ module.exports = {
 			alias: {
 				'@': resolve('src')
 			}
+		},
+		performance: {
+			hints: false
 		}
 	},
 	pluginOptions: {

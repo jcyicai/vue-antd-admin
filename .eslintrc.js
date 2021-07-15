@@ -9,9 +9,6 @@ module.exports = {
 		es6: true
 	},
 	extends: ['plugin:vue/vue3-recommended', 'prettier', 'plugin:prettier/recommended'],
-
-	// add your custom rules here
-	//it is base on https://github.com/vuejs/eslint-config-vue
 	rules: {
 		'prettier/prettier': 2,
     "vue/comment-directive": 'off',

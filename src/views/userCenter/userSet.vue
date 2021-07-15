@@ -26,21 +26,25 @@
 <script>
 import { ref, computed } from 'vue'
 import { BasicSet, SafeSet } from './components'
+
 export default {
 	name: 'UserSet',
 	components: { BasicSet, SafeSet },
 	setup() {
+		// data
 		const selectedKeys = ref(['1'])
-		const handleClick = (e) => {}
 
 		const curMenuComponent = computed(() => {
 			return selectedKeys.value.indexOf('1') > -1 ? 'BasicSet' : 'SafeSet'
 		})
 
+		// methods
+		const handleClick = (e) => {}
+
 		return {
 			selectedKeys,
-			handleClick,
-			curMenuComponent
+			curMenuComponent,
+			handleClick
 		}
 	}
 }

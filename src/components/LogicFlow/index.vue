@@ -142,7 +142,7 @@ export default {
 			return lf.value.getGraphData()
 		}
 
-		// mounted
+		// lifecycle
 		onMounted(() => {
 			initFlow()
 		})

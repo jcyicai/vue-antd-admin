@@ -57,7 +57,8 @@ import { useStore } from 'vuex'
 
 export default {
 	name: 'Login',
-	setup(props) {
+	setup() {
+		// data
 		const store = useStore()
 		const router = useRouter()
 		const route = useRoute()
@@ -93,6 +94,7 @@ export default {
 			password: [{ min: 6, required: true, trigger: 'blur', message: '密码不能小于6位' }]
 		}
 
+		// methods
 		const getOtherQuery = (query) => {
 			return Object.keys(query).reduce((acc, cur) => {
 				if (cur !== 'redirect') {
@@ -101,18 +103,6 @@ export default {
 				return acc
 			}, {})
 		}
-
-		watch(
-			() => route,
-			(curRoute) => {
-				const query = curRoute.query
-				if (query) {
-					redirect.value = query.redirect
-					otherQuery.value = getOtherQuery(query)
-				}
-			},
-			{ immediate: true }
-		)
 
 		//提交登录信息
 		const handleRegister = () => {
@@ -134,6 +124,19 @@ export default {
 					loading.value = false
 				})
 		}
+
+		// watch
+		watch(
+			() => route,
+			(curRoute) => {
+				const query = curRoute.query
+				if (query) {
+					redirect.value = query.redirect
+					otherQuery.value = getOtherQuery(query)
+				}
+			},
+			{ immediate: true }
+		)
 
 		return {
 			loginForm,

@@ -5,15 +5,7 @@
 <script>
 import * as echarts from 'echarts'
 import chartResize from './hooks/resize'
-import {
-	ref,
-	reactive,
-	onMounted,
-	onBeforeMount,
-	onBeforeUnmount,
-	onActivated,
-	onDeactivated
-} from 'vue'
+import { ref, onMounted, onBeforeMount, onBeforeUnmount, onActivated, onDeactivated } from 'vue'
 
 export default {
 	props: {
@@ -35,8 +27,10 @@ export default {
 		}
 	},
 	setup(props) {
+		// data
 		const chart = ref(null)
 
+		// methods
 		const initChart = () => {
 			chart.value = echarts.init(document.getElementById(props.id))
 			chart.value.setOption({
@@ -81,6 +75,7 @@ export default {
 
 		const { resizeHandler, initListener, destroyListener, resize } = chartResize(chart.value)
 
+		// lifecycle
 		onMounted(() => {
 			initChart()
 			initListener(chart.value)

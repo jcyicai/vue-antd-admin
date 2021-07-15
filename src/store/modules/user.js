@@ -29,7 +29,7 @@ const mutations = {
 }
 
 const actions = {
-	// user login
+	// 用户登录
 	login({ commit }, userInfo) {
 		const { username, password } = userInfo
 		return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ const actions = {
 		})
 	},
 
-	// get user info
+	// 获取用户信息
 	getInfo({ commit, state }) {
 		return new Promise((resolve, reject) => {
 			getInfo(state.token)
@@ -59,7 +59,7 @@ const actions = {
 
 					const { roles, name, avatar, introduction } = data
 
-					// roles must be a non-empty array
+					// roles必须存在
 					if (!roles || roles.length <= 0) {
 						reject('getInfo: roles不能为空!')
 					}
@@ -71,13 +71,12 @@ const actions = {
 					resolve(data)
 				})
 				.catch((error) => {
-					debugger
 					reject(error)
 				})
 		})
 	},
 
-	// user logout
+	// 用户退出
 	logout({ commit, state, dispatch }) {
 		return new Promise((resolve, reject) => {
 			logout(state.token)
@@ -96,7 +95,7 @@ const actions = {
 		})
 	},
 
-	// remove token
+	// 移除token
 	resetToken({ commit }) {
 		return new Promise((resolve) => {
 			commit('SET_TOKEN', '')
@@ -106,7 +105,7 @@ const actions = {
 		})
 	},
 
-	// dynamically modify permissions
+	// 动态修改权限
 	async changeRoles({ commit, dispatch }, role) {
 		const token = role + '-token'
 
