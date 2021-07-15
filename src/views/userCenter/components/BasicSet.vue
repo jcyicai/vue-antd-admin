@@ -46,7 +46,8 @@
 <script>
 import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue'
 import { message } from 'ant-design-vue'
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
+import { useStore } from 'vuex'
 
 function getBase64(img, callback) {
 	const reader = new FileReader()
@@ -61,6 +62,7 @@ export default {
 		LoadingOutlined
 	},
 	setup() {
+		const store = useStore()
 		const formState = reactive({
 			userName: '',
 			email: '',
@@ -102,6 +104,11 @@ export default {
 			}
 			return isJpgOrPng && isLt2M
 		}
+
+		onMounted(() => {
+			formState.userName = store.getters.name
+			imageUrl.value = store.getters.avatar
+		})
 
 		return {
 			formState,

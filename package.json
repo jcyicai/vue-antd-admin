@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
-    "@logicflow/core": "^0.5.1",
-    "@logicflow/extension": "^0.5.1",
+    "@logicflow/core": "^0.6.0",
+    "@logicflow/extension": "^0.6.0",
     "ant-design-vue": "^2.2.0-beta.5",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
