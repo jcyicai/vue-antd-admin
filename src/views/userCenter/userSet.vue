@@ -57,6 +57,7 @@ export default {
 		background: #fff;
 		padding: 20px 0;
 		display: flex;
+		overflow-x: hidden;
 		.jc-set-menu {
 			.ant-menu {
 				height: 100%;
