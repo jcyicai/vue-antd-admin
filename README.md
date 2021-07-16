@@ -45,7 +45,7 @@
 ## 文件
 
 ```bash
-# vue-blog-admin
+# vue-antd-admin
 - src
   - api
   - assets
