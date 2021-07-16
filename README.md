@@ -1,8 +1,6 @@
 <p align="center">
-  <img height="80" src="http://resource.cycblog.cn/image/jc-admin-logo.png">
-<h1 style="color: #333;text-align:center;">Vue Antd Admin </h1>
+  <img height="140" src="http://resource.cycblog.cn/image/jc-admin-logo1.png">
 </p>
-
 
 
 
