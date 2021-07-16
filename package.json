@@ -76,5 +76,6 @@
       "eslint --fix",
       "git add"
     ]
-  }
+  },
+  "license": "MIT"
 }
