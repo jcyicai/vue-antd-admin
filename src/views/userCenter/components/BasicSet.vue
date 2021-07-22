@@ -142,7 +142,7 @@ export default {
 		left: 50%;
 		top: 10%;
 		margin-left: -75px;
-		:deep .ant-upload.ant-upload-select-picture-card {
+		:deep(.ant-upload.ant-upload-select-picture-card) {
 			width: 140px;
 			height: 140px;
 			border-radius: 50%;
