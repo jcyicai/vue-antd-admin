@@ -194,7 +194,7 @@ export default {
 			.jc-header-badge {
 				height: 48px;
 				line-height: 48px;
-				:deep .ant-badge-dot {
+				:deep(.ant-badge-dot) {
 					top: 14px;
 				}
 			}
