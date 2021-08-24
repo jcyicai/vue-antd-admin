@@ -64,8 +64,8 @@ export default {
 		const route = useRoute()
 		const loginForm = ref()
 		const formData = reactive({
-			username: '',
-			password: '',
+			username: 'admin',
+			password: '123456',
 			isChecked: false
 		})
 		const loading = ref(false)
