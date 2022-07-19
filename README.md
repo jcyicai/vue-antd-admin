@@ -97,6 +97,6 @@ npm run dev
 
 ## License
 
-[MIT](https://github.com/chenyicai622/vue-antd-admin/LICENSE)
+[MIT](https://github.com/chenyicai622/vue-antd-admin/blob/master/LICENSE)
 
 Copyright (c) 2021 Jason Chen
