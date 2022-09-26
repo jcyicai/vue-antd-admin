@@ -10,7 +10,7 @@
 
 - vite版本：[vue-antd-admin-vite](https://github.com/chenyicai622/vue-antd-admin-vite) 
 
-**如有改进及优化建议，请发送本人邮箱chenyicai622@qq.com**
+**如有改进及优化建议，请提交issues**
 
 **如果觉得不错，别忘了右上角，点个星星哟~~**
 
